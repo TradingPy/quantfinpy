@@ -21,4 +21,4 @@ jobs:
         pip install tox
     - name: Running tox commands
       run: |
-        tox
+        tox -e ${{ matrix.python-version }}
