@@ -3,7 +3,7 @@
    contain the root `toctree` directive.
 
 Welcome to Quantfinpy's documentation!
-=====================================
+========================================
 
 .. autosummary::
    :toctree: _autosummary
@@ -13,7 +13,7 @@ Welcome to Quantfinpy's documentation!
 
 
 Indices and tables
-==================
+====================
 
 * :ref:`genindex`
 * :ref:`modindex`

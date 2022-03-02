@@ -9,5 +9,5 @@ from quantfinpy.instrument.instrument import Instrument
 # Test instantiation of Instrument class. Should fail as it is intended to be an abstract interface.
 def test_instrument_ctor():
     with pytest.raises(TypeError) as exc_info:
-        instrument = Instrument()
+        Instrument()
     assert "only children of 'Instrument' may be instantiated." in str(exc_info.value)
