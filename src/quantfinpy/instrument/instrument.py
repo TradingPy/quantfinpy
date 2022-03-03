@@ -1,15 +1,12 @@
 """Financial instrument definition."""
 
 from __future__ import annotations
-from abc import ABC
+
+from quantfinpy.utils.abc import abstract_interface
 
 
-class Instrument(ABC):
+@abstract_interface
+class Instrument:
     """Financial instrument's interface."""
 
     __slots__ = ()
-
-    def __new__(cls, *args, **kwargs) -> Instrument:  # type: ignore
-        if cls is Instrument:
-            raise TypeError(f"only children of '{cls.__name__}' may be instantiated.")
-        return object.__new__(cls, *args, **kwargs)
