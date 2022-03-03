@@ -9,7 +9,7 @@ DerivedClass = TypeVar("DerivedClass")
 def abstract_interface(abstract_class: Type[AbstractClass]) -> Type[AbstractClass]:
     """
     Class decorator for pure abstract interfaces.
-    Adding __new__ function to prevent direct instantiation.
+    Adding __new__ function which prevents direct instantiation.
     """
 
     # pylint: disable=unused-argument

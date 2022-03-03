@@ -12,5 +12,8 @@ class Forward(Instrument):
     """Interface for forward instruments."""
 
     underlying: Instrument
+    """instrument to be bought or sold at maturity."""
     strike: float
+    """pre-agreed price for buying or selling the underlying at maturity."""
     maturity: date
+    """end of life of the forward."""

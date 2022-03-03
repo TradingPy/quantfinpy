@@ -12,4 +12,6 @@ class FXSpot(SpotInstrument):
     """Interface for fx spot instruments."""
 
     domestic_currency: Currency
+    """Domestic currency."""
     foreign_currency: Currency
+    """Foreign currency."""
