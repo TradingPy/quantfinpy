@@ -12,7 +12,7 @@ def test_forward_ctor():
     fx_spot = FXSpot(Currency.USD, Currency.EUR)
     strike: float = 1.0
     maturity: date = date.today()
-    fx_fwd = FXForward(fx_spot, 1.0, maturity)
+    fx_fwd = FXForward(fx_spot, strike, maturity)
 
     # Checking built fx spot.
     assert isinstance(fx_fwd, FXForward)
