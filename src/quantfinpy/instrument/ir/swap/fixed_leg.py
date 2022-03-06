@@ -14,6 +14,6 @@ class IRFixedLeg(CashflowScheduleInstrument):
         assert all(
             map(
                 lambda cashflow: isinstance(cashflow, FixedRateCashflow),
-                self.scheduled_cashflows.cashflows,
+                self.scheduled_cashflows.values,
             )
         )

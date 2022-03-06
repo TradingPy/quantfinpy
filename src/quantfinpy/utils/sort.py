@@ -1,17 +1,17 @@
 """Utils related to sorting"""
 
-from typing import Callable, Iterable, Optional, TypeVar
+from typing import Callable, Iterator, Optional, TypeVar
 
 ElementType = TypeVar("ElementType")
 
 
-def assert_sorted_iterable(
-    iterable: Iterable[ElementType], increasing: bool = True
+def assert_sorted_iterator(
+    iterator: Iterator[ElementType], increasing: bool = True
 ) -> None:
     """
-    Assert that the provided iterable is sorted in the specified order, increasing or decreasing.
+    Assert that the provided iterator is sorted in the specified order, increasing or decreasing.
 
-    :param iterable: iterable.
+    :param iterator: iterator.
     :param increasing: flag to indicate if the checked order should be increasing.
 
     Note:
@@ -24,7 +24,7 @@ def assert_sorted_iterable(
         else (lambda new_element: previous_element >= new_element)  # type: ignore
     )
 
-    for element in iterable:
+    for element in iterator:
         if previous_element is not None:
             assert comparison_check(
                 element

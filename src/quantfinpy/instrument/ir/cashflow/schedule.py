@@ -32,7 +32,7 @@ class CashflowScheduleInstrument(Instrument):
             this interface is more friendly to create a CashflowScheduleInstrument with constant cashflow definition
             without knowing about the CashflowSchedule interface.
         """
-        scheduled_cash_flows = CashflowSchedule.build_from_single_cashflow_definition(
+        scheduled_cash_flows = CashflowSchedule.build_from_single_value_definition(
             cashflow_dates, cashflow
         )
         return cls(scheduled_cash_flows)

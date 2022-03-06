@@ -27,7 +27,9 @@ def test_floating_rate_cashflow_ctor():
     notional = 1.0
     currency = Currency.USD
     tenor = Tenor(months=3)
-    floating_rate_curve_id = InterestRateCurveId(InterestRateIndex.LIBOR, Currency.EUR, Tenor(day=2))
+    floating_rate_curve_id = InterestRateCurveId(
+        InterestRateIndex.LIBOR, Currency.EUR, Tenor(day=2)
+    )
     cashflow = FloatingRateCashflow(notional, currency, tenor, floating_rate_curve_id)
 
     # Checking built FloatingRateCashflow.

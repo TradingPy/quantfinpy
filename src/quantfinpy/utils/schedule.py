@@ -1,25 +1,50 @@
 """Interface and definition of generic scheduled values, i.e. time series."""
 
-from abc import abstractmethod
+from __future__ import annotations
+
 from datetime import date
-from typing import Mapping, Protocol, TypeVar, runtime_checkable
+from typing import Generic, Iterable, Iterator, Tuple, Type, TypeVar
 
-from quantfinpy.utils.sort import assert_sorted_iterable
+from attr import attrs
 
-ValueType = TypeVar("ValueType", covariant=True)
+from quantfinpy.utils.sort import assert_sorted_iterator
+
+ValueType = TypeVar("ValueType", covariant=False)
 
 
-@runtime_checkable
-class ScheduledValues(Protocol[ValueType]):
-    """Generic interface for scheduled values, i.e. time series."""
+ScheduledValuesSubClass = TypeVar("ScheduledValuesSubClass")
 
-    __slots__ = ()
+
+@attrs(frozen=True, slots=True, auto_attribs=True)
+class ScheduledValues(Generic[ValueType]):
+    """Scheduled values, i.e. timeseries."""
+
+    schedule: Iterable[Tuple[date, ValueType]]
+
+    def __attrs_post_init__(self) -> None:
+        assert_sorted_iterator(self.dates)
 
     @property
-    @abstractmethod
-    def schedule(self) -> Mapping[date, ValueType]:
-        """Get underlying schedule of values."""
+    def dates(self) -> Iterator[date]:
+        """Get schedule's dates."""
+        return map(lambda dated_val: dated_val[0], self.schedule)
 
-    def validate(self) -> None:
-        """Validate internal schedule definition."""
-        assert_sorted_iterable(self.schedule.keys())
+    @property
+    def values(self) -> Iterator[ValueType]:
+        """Get schedule's values."""
+        return map(lambda dated_val: dated_val[1], self.schedule)
+
+    @classmethod
+    def build_from_single_value_definition(
+        cls: Type[ScheduledValues[ValueType]],
+        dates: Iterable[date],
+        value: ValueType,
+    ) -> ScheduledValues[ValueType]:
+        """
+        Build an instance of cls with the same value being associated to the specified dates.
+
+        :param dates: schedule dates.
+        :param value: value associated to the different schedule dates.
+        :return: instance of specified cls.
+        """
+        return cls(tuple(map(lambda schedule_date: (schedule_date, value), dates)))
