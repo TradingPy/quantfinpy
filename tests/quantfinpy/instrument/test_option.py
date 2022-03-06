@@ -11,10 +11,13 @@ from quantfinpy.enum.currency import Currency
 @pytest.mark.parametrize("option_side", OptionSide)
 @pytest.mark.parametrize("exercise_type", OptionExerciseType)
 def test_option_ctor(option_side: OptionSide, exercise_type: OptionExerciseType):
+    # Creating the option instrument as an option on a fx spot.
     fx_spot = FXSpot(Currency.USD, Currency.EUR)
     strike: float = 1.0
     maturity: date = date.today()
     fx_option = Option(option_side, exercise_type, fx_spot, 1.0, maturity)
+
+    # Checking built option.
     assert isinstance(fx_option, Option)
     assert fx_option.side == option_side
     assert fx_option.exercise_type == exercise_type
