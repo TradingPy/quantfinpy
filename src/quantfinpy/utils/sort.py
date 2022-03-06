@@ -13,6 +13,9 @@ def assert_sorted_iterable(
 
     :param iterable: iterable.
     :param increasing: flag to indicate if the checked order should be increasing.
+
+    Note:
+        Could check that the comparison operators are available via operator protocols.
     """
     previous_element: Optional[ElementType] = None
     comparison_check: Callable[[ElementType], bool] = (

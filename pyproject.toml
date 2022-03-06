@@ -8,6 +8,7 @@ authors = ["TradingPy"]
 python = "^3.8"
 pandas = "^1.4.1"
 pandas-stubs = "^1.2.0"
+typing-extensions = "^4.1.1" # for pythonn versions prior to 3.10
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"

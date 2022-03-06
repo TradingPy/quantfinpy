@@ -5,7 +5,7 @@ from attr import attrs
 
 from quantfinpy.enum.ir_index import InterestRateIndex
 from quantfinpy.enum.currency import Currency
-from quantfinpy.data.ir.tenor import Tenor
+from quantfinpy.data.tenor import Tenor
 
 
 @attrs(slots=True, auto_attribs=True, frozen=True)
