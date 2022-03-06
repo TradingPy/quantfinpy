@@ -1,9 +1,9 @@
 """Interface for options."""
 
-from enum import Enum, auto
 from datetime import date
-from attr import attrs
+from enum import Enum, auto
 
+from attr import attrs
 
 from quantfinpy.instrument.instrument import Instrument
 

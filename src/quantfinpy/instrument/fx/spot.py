@@ -2,9 +2,8 @@
 
 from attr import attrs
 
-
-from quantfinpy.instrument.spot import SpotInstrument
 from quantfinpy.enum.currency import Currency
+from quantfinpy.instrument.spot import SpotInstrument
 
 
 @attrs(slots=True, frozen=True, auto_attribs=True)

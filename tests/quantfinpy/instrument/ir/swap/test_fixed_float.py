@@ -1,15 +1,16 @@
 """Test cases for FixedFloat IR Swap."""
 
 from datetime import date
+
 import pandas as pd
 
-from quantfinpy.enum.currency import Currency
-from quantfinpy.data.tenor import Tenor
-from quantfinpy.data.ir.curve import InterestRateIndex, InterestRateCurveId
 from quantfinpy.data.ir.cashflow.cashflow import FixedRateCashflow, FloatingRateCashflow
+from quantfinpy.data.ir.curve import InterestRateCurveId, InterestRateIndex
+from quantfinpy.data.tenor import Tenor
+from quantfinpy.enum.currency import Currency
+from quantfinpy.instrument.ir.swap.fixed_float import IRFixedFloatSwap
 from quantfinpy.instrument.ir.swap.fixed_leg import IRFixedLeg
 from quantfinpy.instrument.ir.swap.floating_leg import IRFloatingLeg
-from quantfinpy.instrument.ir.swap.fixed_float import IRFixedFloatSwap
 
 
 def test_ir_fixed_float_swap_ctor():

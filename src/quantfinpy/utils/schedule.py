@@ -1,9 +1,8 @@
 """Interface and definition of generic scheduled values, i.e. time series."""
 
-from typing import TypeVar, Protocol, Mapping, runtime_checkable
 from abc import abstractmethod
 from datetime import date
-
+from typing import Mapping, Protocol, TypeVar, runtime_checkable
 
 from quantfinpy.utils.sort import assert_sorted_iterable
 

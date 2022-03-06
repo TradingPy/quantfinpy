@@ -1,12 +1,13 @@
 """Interface for all instruments derived from a schedule of cashflows."""
 
-from typing import Iterable
 from datetime import date
+from typing import Iterable
+
 from attr import attrs
 
-from quantfinpy.instrument.instrument import Instrument
 from quantfinpy.data.ir.cashflow.cashflow import Cashflow
 from quantfinpy.data.ir.cashflow.schedule import CashflowSchedule
+from quantfinpy.instrument.instrument import Instrument
 
 
 @attrs(slots=True, frozen=True, auto_attribs=True)

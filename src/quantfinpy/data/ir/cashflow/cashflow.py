@@ -2,9 +2,9 @@
 
 from attr import attrs
 
-from quantfinpy.enum.currency import Currency
-from quantfinpy.data.tenor import Tenor
 from quantfinpy.data.ir.curve import InterestRateCurveId
+from quantfinpy.data.tenor import Tenor
+from quantfinpy.enum.currency import Currency
 
 
 @attrs(frozen=True, slots=True, auto_attribs=True)

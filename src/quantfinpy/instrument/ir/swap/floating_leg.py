@@ -2,8 +2,8 @@
 
 from attr import attrs
 
-from quantfinpy.instrument.ir.cashflow.schedule import CashflowScheduleInstrument
 from quantfinpy.data.ir.cashflow.cashflow import FloatingRateCashflow
+from quantfinpy.instrument.ir.cashflow.schedule import CashflowScheduleInstrument
 
 
 @attrs(slots=True, frozen=True, auto_attribs=True)

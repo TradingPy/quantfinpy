@@ -3,8 +3,8 @@
 import pytest
 
 from quantfinpy.instrument.instrument import Instrument
-from quantfinpy.order.order import Order, OrderSide
 from quantfinpy.order.limit import LimitOrder
+from quantfinpy.order.order import Order, OrderSide
 from quantfinpy.order.stop_limit import StopLimitOrder
 
 

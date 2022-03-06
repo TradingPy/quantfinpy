@@ -1,11 +1,12 @@
 """Test cases for option's interface."""
 
 from datetime import date
+
 import pytest
 
-from quantfinpy.instrument.option import Option, OptionSide, OptionExerciseType
-from quantfinpy.instrument.fx.spot import FXSpot
 from quantfinpy.enum.currency import Currency
+from quantfinpy.instrument.fx.spot import FXSpot
+from quantfinpy.instrument.option import Option, OptionExerciseType, OptionSide
 
 
 @pytest.mark.parametrize("option_side", OptionSide)

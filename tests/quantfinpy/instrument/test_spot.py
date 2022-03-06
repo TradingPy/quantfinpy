@@ -2,7 +2,6 @@
 
 import pytest
 
-
 from quantfinpy.instrument.spot import SpotInstrument
 
 

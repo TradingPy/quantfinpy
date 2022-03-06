@@ -1,8 +1,8 @@
 """Interface for portfolio of instruments."""
 
 from typing import Tuple
-from attr import attrs
 
+from attr import attrs
 
 from quantfinpy.instrument.instrument import Instrument
 

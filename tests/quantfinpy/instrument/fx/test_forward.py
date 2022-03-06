@@ -2,9 +2,9 @@
 
 from datetime import date
 
+from quantfinpy.enum.currency import Currency
 from quantfinpy.instrument.fx.forward import FXForward
 from quantfinpy.instrument.fx.spot import FXSpot
-from quantfinpy.enum.currency import Currency
 
 
 def test_forward_ctor():

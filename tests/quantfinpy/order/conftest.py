@@ -2,9 +2,9 @@
 
 import pytest
 
-from quantfinpy.instrument.instrument import Instrument
-from quantfinpy.instrument.fx.spot import FXSpot
 from quantfinpy.enum.currency import Currency
+from quantfinpy.instrument.fx.spot import FXSpot
+from quantfinpy.instrument.instrument import Instrument
 
 
 @pytest.fixture(scope="module")

@@ -1,13 +1,14 @@
 """Test cases for scheduled cashflows."""
 
-from itertools import repeat
 from datetime import date
+from itertools import repeat
+
 import pandas as pd
 
-from quantfinpy.enum.currency import Currency
-from quantfinpy.data.tenor import Tenor
 from quantfinpy.data.ir.cashflow.cashflow import FixedRateCashflow
 from quantfinpy.data.ir.cashflow.schedule import CashflowSchedule
+from quantfinpy.data.tenor import Tenor
+from quantfinpy.enum.currency import Currency
 
 
 def test_cashflow_schedule_ctor():

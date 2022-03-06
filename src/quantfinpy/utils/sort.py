@@ -1,6 +1,6 @@
 """Utils related to sorting"""
 
-from typing import Iterable, TypeVar, Optional, Callable
+from typing import Callable, Iterable, Optional, TypeVar
 
 ElementType = TypeVar("ElementType")
 

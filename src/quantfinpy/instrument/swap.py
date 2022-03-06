@@ -1,8 +1,8 @@
 """Interface for swap instruments."""
 
 from typing import Tuple
-from attr import attrs
 
+from attr import attrs
 
 from quantfinpy.instrument.portfolio import Portfolio, Position
 

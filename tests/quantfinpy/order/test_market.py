@@ -3,8 +3,8 @@
 import pytest
 
 from quantfinpy.instrument.instrument import Instrument
-from quantfinpy.order.order import Order, OrderSide
 from quantfinpy.order.market import MarketOrder
+from quantfinpy.order.order import Order, OrderSide
 
 
 @pytest.mark.parametrize(["quantity", "expected_order_side"], [(1.0, OrderSide.BUY), (-1.0, OrderSide.SELL)])

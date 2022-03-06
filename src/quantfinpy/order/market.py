@@ -1,6 +1,7 @@
 """Interface for market orders."""
 
 from __future__ import annotations
+
 from attr import attrs
 
 from quantfinpy.order.order import Order

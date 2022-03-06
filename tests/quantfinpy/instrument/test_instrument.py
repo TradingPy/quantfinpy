@@ -2,7 +2,6 @@
 
 import pytest
 
-
 from quantfinpy.instrument.instrument import Instrument
 
 

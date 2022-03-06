@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from quantfinpy.utils.abc import abstract_interface
 from quantfinpy.instrument.instrument import Instrument
+from quantfinpy.utils.abc import abstract_interface
 
 
 @abstract_interface

@@ -1,7 +1,9 @@
 """Base interface for all the kinds of orders."""
 
 from __future__ import annotations
+
 from enum import Enum, auto
+
 from attr import attrs
 
 from quantfinpy.instrument.instrument import Instrument

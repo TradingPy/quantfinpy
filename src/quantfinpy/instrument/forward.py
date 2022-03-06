@@ -1,8 +1,8 @@
 """Interface for forward instruments."""
 
 from datetime import date
-from attr import attrs
 
+from attr import attrs
 
 from quantfinpy.instrument.instrument import Instrument
 

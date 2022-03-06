@@ -2,10 +2,10 @@
 
 from attr import attrs
 
-from quantfinpy.instrument.portfolio import Position
-from quantfinpy.instrument.swap import Swap
 from quantfinpy.instrument.ir.swap.fixed_leg import IRFixedLeg
 from quantfinpy.instrument.ir.swap.floating_leg import IRFloatingLeg
+from quantfinpy.instrument.portfolio import Position
+from quantfinpy.instrument.swap import Swap
 
 
 @attrs(frozen=True, slots=True, auto_attribs=True, init=False)

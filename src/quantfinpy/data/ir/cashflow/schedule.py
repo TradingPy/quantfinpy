@@ -1,7 +1,8 @@
 """Cashflow schedule interface and specialisations."""
 
-from typing import Mapping, Iterable, ValuesView
 from datetime import date
+from typing import Iterable, Mapping, ValuesView
+
 from attr import attrs
 
 from quantfinpy.data.ir.cashflow.cashflow import Cashflow

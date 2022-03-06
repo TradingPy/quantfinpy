@@ -1,10 +1,11 @@
 """Interface for stop limit orders."""
 
 from __future__ import annotations
+
 from attr import attrs
 
-from quantfinpy.order.order import Order
 from quantfinpy.order.limit import LimitOrder
+from quantfinpy.order.order import Order
 
 
 @attrs(slots=True, frozen=True, auto_attribs=True)

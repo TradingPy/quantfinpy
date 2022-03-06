@@ -2,7 +2,6 @@
 
 from attr import attrs
 
-
 from quantfinpy.instrument.forward import Forward
 from quantfinpy.instrument.fx.spot import FXSpot
 
