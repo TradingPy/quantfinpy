@@ -9,4 +9,6 @@ from quantfinpy.instrument.spot import SpotInstrument
 def test_spot_instrument_ctor():
     with pytest.raises(TypeError) as exc_info:
         SpotInstrument()
-    assert "only children of 'SpotInstrument' may be instantiated." in str(exc_info.value)
+    assert "only children of 'SpotInstrument' may be instantiated." in str(
+        exc_info.value
+    )
