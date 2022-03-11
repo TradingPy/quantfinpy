@@ -42,8 +42,8 @@ def test_ir_fixed_float_swap_ctor():
 
     # Checking built swap.
     assert isinstance(ir_fixed_float_swap, IRFixedFloatSwap)
-    assert ir_fixed_float_swap.fixed_leg == ir_fixed_leg
-    assert ir_fixed_float_swap.floating_leg == ir_floating_leg
+    assert ir_fixed_float_swap.receiver_fixed_leg == ir_fixed_leg
+    assert ir_fixed_float_swap.payer_floating_leg == ir_floating_leg
     assert list(
         map(lambda leg_position: leg_position.quantity, ir_fixed_float_swap.swap_legs)
     ) == [1.0, -1.0]
