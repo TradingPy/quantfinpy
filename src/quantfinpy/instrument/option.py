@@ -13,7 +13,7 @@ class OptionSide(Enum):
 
     CALL = auto()
     """Long side, i.e. buying the underlying at maturity."""
-    SELL = auto()
+    PUT = auto()
     """Short side, i.e. selling the underlying at maturity."""
 
 
