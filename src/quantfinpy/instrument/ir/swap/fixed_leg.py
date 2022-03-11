@@ -2,7 +2,7 @@
 
 from attr import attrs
 
-from quantfinpy.data.ir.cashflow.cashflow import FixedRateCashflow
+from quantfinpy.data.cashflow.cashflow import FixedRateCashflow
 from quantfinpy.instrument.ir.cashflow.schedule import CashflowScheduleInstrument
 
 

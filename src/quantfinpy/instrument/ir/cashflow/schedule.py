@@ -5,8 +5,8 @@ from typing import Iterable
 
 from attr import attrs
 
-from quantfinpy.data.ir.cashflow.cashflow import Cashflow
-from quantfinpy.data.ir.cashflow.schedule import CashflowSchedule
+from quantfinpy.data.cashflow.cashflow import Cashflow
+from quantfinpy.data.cashflow.schedule import CashflowSchedule
 from quantfinpy.instrument.instrument import Instrument
 
 

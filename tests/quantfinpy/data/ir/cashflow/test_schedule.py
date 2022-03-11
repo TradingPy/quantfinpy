@@ -6,8 +6,8 @@ from typing import Tuple
 
 import pandas as pd
 
-from quantfinpy.data.ir.cashflow.cashflow import FixedRateCashflow
-from quantfinpy.data.ir.cashflow.schedule import CashflowSchedule
+from quantfinpy.data.cashflow.cashflow import FixedRateCashflow
+from quantfinpy.data.cashflow.schedule import CashflowSchedule
 from quantfinpy.data.tenor import Tenor
 from quantfinpy.enum.currency import Currency
 from quantfinpy.utils.schedule import ScheduledValues

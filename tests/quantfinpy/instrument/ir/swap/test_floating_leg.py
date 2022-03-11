@@ -4,8 +4,8 @@ from datetime import date
 
 import pandas as pd
 
-from quantfinpy.data.ir.cashflow.cashflow import FloatingRateCashflow
-from quantfinpy.data.ir.cashflow.schedule import CashflowSchedule
+from quantfinpy.data.cashflow.schedule import CashflowSchedule
+from quantfinpy.data.ir.cashflow import FloatingRateCashflow
 from quantfinpy.data.ir.curve import InterestRateCurveId, InterestRateIndex
 from quantfinpy.data.tenor import Tenor
 from quantfinpy.enum.currency import Currency
