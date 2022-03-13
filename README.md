@@ -26,4 +26,4 @@ it means that you need to delete doc/source/_autosummary folder and rerun tox.
 
 ## Installation
 
-$ pip install quantfipy
+$ pip install quantfinpy
