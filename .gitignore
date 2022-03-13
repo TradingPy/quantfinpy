@@ -127,4 +127,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-/doc/source/_autosummary/
+/docs/source/_autosummary/

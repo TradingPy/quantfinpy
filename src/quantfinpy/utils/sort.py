@@ -1,4 +1,4 @@
-"""Utils related to sorting"""
+"""Utils related to sorting."""
 
 from typing import Callable, Iterator, Optional, TypeVar
 
@@ -16,6 +16,7 @@ def assert_sorted_iterator(
 
     Note:
         Could check that the comparison operators are available via operator protocols.
+
     """
     previous_element: Optional[ElementType] = None
     comparison_check: Callable[[ElementType], bool] = (

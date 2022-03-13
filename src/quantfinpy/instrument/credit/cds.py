@@ -46,26 +46,26 @@ class CDS(Swap):
 
     @property
     def credit_instrument(self) -> CreditInstrument:
-        """credit instrument whose credit risk is to be swapped via the cds."""
+        """Credit instrument whose credit risk is to be swapped via the cds."""
         credit_instrument = self.positions[1].instrument
         assert isinstance(credit_instrument, CreditInstrument)
         return credit_instrument
 
     @property
     def premium_payments(self) -> CashflowSchedule:
-        """cds premium payments."""
+        """Cds premium payments."""
         premium_payments = self.positions[0].instrument
         assert isinstance(premium_payments, CashflowScheduleInstrument)
         return premium_payments.scheduled_cashflows
 
     @property
     def payment_dates(self) -> Iterator[date]:
-        """cds premium payment dates."""
+        """Cds premium payment dates."""
         return self.premium_payments.dates
 
     @property
     def payment_tenor(self) -> Tenor:
-        """cds premium payments' tenor"""
+        """Cds premium payments' tenor."""
         first_premium_payment = next(self.premium_payments.values)
         assert isinstance(first_premium_payment, FixedRateCashflow)
         return first_premium_payment.tenor

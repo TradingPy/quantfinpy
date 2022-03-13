@@ -29,8 +29,9 @@ class CashflowScheduleInstrument(Instrument):
         :return: CashflowScheduleInstrument with same cashflow distributed at specified dates.
 
         Note:
-            this interface is more friendly to create a CashflowScheduleInstrument with constant cashflow definition
+            This interface is more friendly to create a CashflowScheduleInstrument with constant cashflow definition
             without knowing about the CashflowSchedule interface.
+
         """
         scheduled_cash_flows = CashflowSchedule.build_from_single_value_definition(
             cashflow_dates, cashflow
