@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "quantfinpy"
-version = "0.0.2"
+version = "0.0.3"
 description = "Quantitative finance in python."
 authors = ["TradingPy"]
 
