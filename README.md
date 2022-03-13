@@ -23,3 +23,7 @@ Testing is done via tox and covers static checks + pytest testing.
 The documentation is generated with sphinx and autodoc when running the tox action. 
 If the sphinx command fails with an error mentioning missing modules and these missing modules have just been deleted, 
 it means that you need to delete doc/source/_autosummary folder and rerun tox.
+
+## Installation
+
+$ pip install quantfipy
