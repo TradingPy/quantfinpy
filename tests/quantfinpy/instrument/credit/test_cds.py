@@ -26,7 +26,7 @@ def test_cds_ctor():
     assert isinstance(cds, CDS)
     assert all(
         map(
-            lambda date_pair: object.__eq__(*date_pair),
+            lambda date_pair: date_pair[0] == date_pair[1],
             zip(cds.payment_dates, payment_dates),
         )
     )
