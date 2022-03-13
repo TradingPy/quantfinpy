@@ -6,6 +6,7 @@ authors = ["TradingPy"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
+attrs = "^21.4.0"
 pandas = "^1.4.1"
 pandas-stubs = "^1.2.0"
 typing-extensions = "^4.1.1" # for python versions prior to 3.10
