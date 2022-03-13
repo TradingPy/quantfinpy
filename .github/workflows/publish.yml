@@ -16,10 +16,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install poetry
     - name: Publishing package
-      env:
-        PYPI_USERNAME: ${{ secrets.PYPI_USERNAME }}
-        PYPI_TOKEN: ${{ secrets.PYPI_PASSWORD }}
       run: |
         poetry install -v
         poetry build
-        poetry publish -p PYPI_PASSWORD -u $PYPI_USERNAME
+        poetry publish -p ${{ secrets.PYPI_PASSWORD }} -u ${{ secrets.PYPI_USERNAME }}
