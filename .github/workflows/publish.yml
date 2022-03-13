@@ -18,8 +18,8 @@ jobs:
     - name: Publishing package
       env:
         PYPI_USERNAME: ${{ secrets.PYPI_USERNAME }}
-        PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+        PYPI_TOKEN: ${{ secrets.PYPI_PASSWORD }}
       run: |
         poetry install -v
         poetry build
-        poetry publish -p $PYPI_TOKEN -u $PYPI_USERNAME
+        poetry publish -p PYPI_PASSWORD -u $PYPI_USERNAME
