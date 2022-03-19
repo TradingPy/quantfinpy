@@ -1,6 +1,6 @@
 """Interface for instrument indices."""
 
-from typing import Iterable
+from typing import Tuple
 
 from attr import attrs
 
@@ -11,5 +11,5 @@ from quantfinpy.instrument.instrument import Instrument
 class Index(Instrument):
     """Instrument index, i.e. set of instruments."""
 
-    constituents: Iterable[Instrument]
+    constituents: Tuple[Instrument, ...]
     """index's constituents."""
