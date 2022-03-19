@@ -11,6 +11,7 @@ class FXForward(Forward):
     """Interface for fx forward instruments."""
 
     def __attrs_post_init__(self) -> None:
+        super().__attrs_post_init__()
         assert isinstance(self.underlying, FXSpot)
 
     @property

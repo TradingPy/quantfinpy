@@ -2,12 +2,9 @@
 
 from __future__ import annotations
 
-from datetime import date
-
 from attr import attrs
-from cytoolz.itertoolz import last  # pylint: disable=no-name-in-module
 
-from quantfinpy.data.cashflow.schedule import CashflowSchedule
+from quantfinpy.data.cashflow.schedule import CashflowSchedule, schedule_maturity
 from quantfinpy.enum.currency import Currency
 from quantfinpy.instrument.credit.instrument import CreditInstrument
 
@@ -22,13 +19,23 @@ class Bond(CreditInstrument):
     def __init__(
         self,
         reference_entity: str,
-        maturity: date,
         notional: float,
         currency: Currency,
         coupon_cashflows: CashflowSchedule,
     ) -> None:
-        super().__init__(reference_entity, maturity, notional, currency)
+        super().__init__(
+            reference_entity, schedule_maturity(coupon_cashflows), notional, currency
+        )
         object.__setattr__(self, "coupon_cashflows", coupon_cashflows)
 
-        coupon_date, _ = last(self.coupon_cashflows.schedule)
-        assert coupon_date <= self.maturity
+    @classmethod
+    def validate_value(cls, instrument_value: float) -> None:
+        """
+        Validate a specific bond value, i.e. checking positive.
+
+        :param instrument_value: a bond value.
+        """
+        CreditInstrument.validate_value(instrument_value)
+        assert (
+            instrument_value >= 0.0
+        ), f"A bond value is always positive, received {instrument_value}."

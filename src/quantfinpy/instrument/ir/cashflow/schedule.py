@@ -6,7 +6,7 @@ from typing import Iterable
 from attr import attrs
 
 from quantfinpy.data.cashflow.cashflow import Cashflow
-from quantfinpy.data.cashflow.schedule import CashflowSchedule
+from quantfinpy.data.cashflow.schedule import CashflowSchedule, schedule_maturity
 from quantfinpy.instrument.instrument import Instrument
 
 
@@ -37,3 +37,13 @@ class CashflowScheduleInstrument(Instrument):
             cashflow_dates, cashflow
         )
         return cls(scheduled_cash_flows)
+
+    @property
+    def maturity(self) -> date:
+        """Get instrument's maturity."""
+        return schedule_maturity(self.scheduled_cashflows)
+
+    @property
+    def starting_date(self) -> date:
+        """Get instrument's starting date."""
+        return next(self.scheduled_cashflows.dates)

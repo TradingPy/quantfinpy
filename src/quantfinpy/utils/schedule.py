@@ -34,6 +34,11 @@ class ScheduledValues(Generic[ValueType]):
         """Get schedule's values."""
         return map(lambda dated_val: dated_val[1], self.schedule)
 
+    @property
+    def items(self) -> Iterator[Tuple[date, ValueType]]:
+        """Get schedule's iterator."""
+        return iter(self.schedule)
+
     @classmethod
     def build_from_single_value_definition(
         cls: Type[ScheduledValues[ValueType]],

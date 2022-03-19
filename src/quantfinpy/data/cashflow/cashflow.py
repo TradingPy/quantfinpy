@@ -1,8 +1,8 @@
 """Cashflow interfaces and definitions."""
 
 from attr import attrs
+from pandas import DateOffset
 
-from quantfinpy.data.tenor import Tenor
 from quantfinpy.enum.currency import Currency
 
 
@@ -20,7 +20,7 @@ class Cashflow:
 class ProjectedCashflow(Cashflow):
     """Cashflow projected according to a specified tenor."""
 
-    tenor: Tenor
+    tenor: DateOffset
     """Projection's tenor."""
 
 

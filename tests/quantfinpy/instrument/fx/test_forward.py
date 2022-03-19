@@ -2,21 +2,19 @@
 
 from datetime import date
 
-from quantfinpy.enum.currency import Currency
 from quantfinpy.instrument.fx.forward import FXForward
 from quantfinpy.instrument.fx.spot import FXSpot
 
 
-def test_forward_ctor():
+def test_forward_ctor(default_fx_spot: FXSpot):
     # Creating a fx forward as a forward on fx spot.
-    fx_spot = FXSpot(Currency.USD, Currency.EUR)
     strike: float = 1.0
     maturity: date = date.today()
-    fx_fwd = FXForward(fx_spot, strike, maturity)
+    fx_fwd = FXForward(default_fx_spot, strike, maturity)
 
     # Checking built fx spot.
     assert isinstance(fx_fwd, FXForward)
-    assert fx_fwd.underlying == fx_spot
-    assert fx_fwd.underlying_fx_spot == fx_spot
+    assert fx_fwd.underlying == default_fx_spot
+    assert fx_fwd.underlying_fx_spot == default_fx_spot
     assert fx_fwd.strike == strike
     assert fx_fwd.maturity == maturity

@@ -1,8 +1,8 @@
 """Interfaces for base interest rate curve id and object."""
 
 from attr import attrs
+from pandas import DateOffset
 
-from quantfinpy.data.tenor import Tenor
 from quantfinpy.enum.currency import Currency
 from quantfinpy.enum.ir_index import InterestRateIndex
 
@@ -15,5 +15,5 @@ class InterestRateCurveId:
     """Curve's index."""
     currency: Currency
     """Curve's currency."""
-    tenor: Tenor
+    tenor: DateOffset
     """Curve's tenor."""

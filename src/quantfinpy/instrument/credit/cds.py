@@ -4,10 +4,11 @@ from datetime import date
 from typing import Iterable, Iterator
 
 from attr import attrs
+from cytoolz.itertoolz import last  # pylint: disable=no-name-in-module
+from pandas import DateOffset
 
 from quantfinpy.data.cashflow.cashflow import FixedRateCashflow
 from quantfinpy.data.cashflow.schedule import CashflowSchedule
-from quantfinpy.data.tenor import Tenor
 from quantfinpy.instrument.credit.instrument import CreditInstrument
 from quantfinpy.instrument.ir.cashflow.schedule import CashflowScheduleInstrument
 from quantfinpy.instrument.portfolio import Position
@@ -21,13 +22,19 @@ class CDS(Swap):
     cds_spread: float
     """CDS spread, i.e. the insurance premium."""
 
+    # TODO: derive payment tenor from payment dates assuming that tenor between dates is constant.
     def __init__(
         self,
         cds_spread: float,
         credit_instrument: CreditInstrument,
         payment_dates: Iterable[date],
-        payment_tenor: Tenor,
+        payment_tenor: DateOffset,
     ):
+        assert last(payment_dates) <= credit_instrument.maturity, (
+            f"Last payment date {last(payment_dates)} is past the maturity of the underlying credit instrument "
+            f"{credit_instrument.maturity}."
+        )
+
         premium_cashflow = FixedRateCashflow(
             credit_instrument.notional,
             credit_instrument.currency,
@@ -64,7 +71,7 @@ class CDS(Swap):
         return self.premium_payments.dates
 
     @property
-    def payment_tenor(self) -> Tenor:
+    def payment_tenor(self) -> DateOffset:
         """Cds premium payments' tenor."""
         first_premium_payment = next(self.premium_payments.values)
         assert isinstance(first_premium_payment, FixedRateCashflow)

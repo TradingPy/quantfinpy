@@ -5,10 +5,10 @@ from itertools import repeat
 from typing import Tuple
 
 import pandas as pd
+from pandas import DateOffset
 
 from quantfinpy.data.cashflow.cashflow import FixedRateCashflow
 from quantfinpy.data.cashflow.schedule import CashflowSchedule
-from quantfinpy.data.tenor import Tenor
 from quantfinpy.enum.currency import Currency
 from quantfinpy.utils.schedule import ScheduledValues
 
@@ -16,7 +16,7 @@ from quantfinpy.utils.schedule import ScheduledValues
 def test_cashflow_schedule_ctor():
     # Building cashflow schedule as mapping between cashflow dates and cashflow values.
     cashflow_dates = pd.date_range(start=date.today(), periods=10, freq="3M")
-    cashflow = FixedRateCashflow(1.0, Currency.USD, Tenor(months=3), 0.01)
+    cashflow = FixedRateCashflow(1.0, Currency.USD, DateOffset(months=3), 0.01)
     scheduled_cashflows: Tuple[Tuple[date, FixedRateCashflow], ...] = tuple(
         zip(cashflow_dates, repeat(cashflow, cashflow_dates.size))
     )

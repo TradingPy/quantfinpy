@@ -1,8 +1,9 @@
 """Test cases for the different ir cashflow classes."""
 
+from pandas import DateOffset
+
 from quantfinpy.data.ir.cashflow import FloatingRateCashflow
 from quantfinpy.data.ir.curve import InterestRateCurveId, InterestRateIndex
-from quantfinpy.data.tenor import Tenor
 from quantfinpy.enum.currency import Currency
 
 
@@ -10,9 +11,9 @@ def test_floating_rate_cashflow_ctor():
     # Building FloatingRateCashflow.
     notional = 1.0
     currency = Currency.USD
-    tenor = Tenor(months=3)
+    tenor = DateOffset(months=3)
     floating_rate_curve_id = InterestRateCurveId(
-        InterestRateIndex.LIBOR, Currency.EUR, Tenor(day=2)
+        InterestRateIndex.LIBOR, Currency.EUR, DateOffset(day=2)
     )
     cashflow = FloatingRateCashflow(notional, currency, tenor, floating_rate_curve_id)
 

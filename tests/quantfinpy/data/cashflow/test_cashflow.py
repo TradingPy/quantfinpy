@@ -1,7 +1,8 @@
 """Test cases for the basic cashflow classes."""
 
+from pandas import DateOffset
+
 from quantfinpy.data.cashflow.cashflow import FixedRateCashflow
-from quantfinpy.data.tenor import Tenor
 from quantfinpy.enum.currency import Currency
 
 
@@ -9,7 +10,7 @@ def test_fixed_rate_cashflow_ctor():
     # Building FixedRateCashflow.
     notional = 1.0
     currency = Currency.USD
-    tenor = Tenor(months=3)
+    tenor = DateOffset(months=3)
     fixed_rate = 0.01
     cashflow = FixedRateCashflow(notional, currency, tenor, fixed_rate)
 

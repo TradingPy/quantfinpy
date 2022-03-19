@@ -3,24 +3,18 @@
 from datetime import date
 
 import pandas as pd
-from cytoolz.itertoolz import last  # pylint: disable=no-name-in-module
+from pandas import DateOffset
 
-from quantfinpy.data.tenor import Tenor
-from quantfinpy.enum.currency import Currency
+from quantfinpy.instrument.credit.bond import Bond
 from quantfinpy.instrument.credit.cds import CDS
-from quantfinpy.instrument.credit.instrument import CreditInstrument
 
 
-def test_cds_ctor():
-    # Building CDS as composition of swapped credit instrument (could be bond) and the premium payment schedule.
-    reference_entity: str = "Company"
+def test_cds_ctor(default_bond: Bond):
+    # Building CDS as composition of a swapped credit instrument (here a bond) and the premium payment schedule.
     payment_dates = pd.date_range(start=date.today(), periods=10, freq="3M")
-    payment_tenor = Tenor(month=3)
+    payment_tenor = DateOffset(month=3)
     cds_spread = 0.012
-    credit_instrument = CreditInstrument(
-        reference_entity, last(payment_dates), 1.0, Currency.USD
-    )
-    cds = CDS(cds_spread, credit_instrument, payment_dates, payment_tenor)
+    cds = CDS(cds_spread, default_bond, payment_dates, payment_tenor)
 
     # Checking built CDS.
     assert isinstance(cds, CDS)
@@ -31,5 +25,5 @@ def test_cds_ctor():
         )
     )
     assert cds.cds_spread == cds_spread
-    assert cds.credit_instrument == credit_instrument
+    assert cds.credit_instrument == default_bond
     assert cds.payment_tenor == payment_tenor

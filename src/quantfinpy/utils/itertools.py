@@ -1,15 +1,13 @@
 """Utils for iterators and iterables."""
 
-from typing import Iterator, TypeVar
-
-IteratorValueType = TypeVar("IteratorValueType")
+from typing import Any, Iterable
 
 
-def is_empty(iterator: Iterator[IteratorValueType]) -> bool:
+def is_empty(iterable: Iterable[Any]) -> bool:
     """
-    Check whether provided iterator is empty.
+    Check whether provided iterable is empty.
 
-    :param iterator: iterator whose emptiness is to be checked.
-    :return: flag indicating if the provided iterator is empty.
+    :param iterable: iterable whose emptiness is to be checked.
+    :return: flag indicating if the provided iterable is empty.
     """
-    return not any(map(lambda el: True, iterator))
+    return not any(map(lambda el: True, iterable))
