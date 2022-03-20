@@ -14,7 +14,7 @@ class Bond(CreditInstrument):
     """Bond, i.e. schedule of coupon cashflows and repayment of notional at maturity."""
 
     coupon_cashflows: CashflowSchedule
-    """schedule coupon cashflows up to maturity."""
+    """scheduled coupon cashflows up to maturity."""
 
     def __init__(
         self,
