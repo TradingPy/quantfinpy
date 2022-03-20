@@ -6,11 +6,11 @@ import pandas as pd
 import pytest
 from pandas import DateOffset
 
-from quantfinpy.data.cashflow.cashflow import FixedRateCashflow
+from quantfinpy.data.cashflow.cashflow import FixedRateCashflow, FloatingRateCashflow
 from quantfinpy.data.cashflow.schedule import CashflowSchedule
-from quantfinpy.data.ir.cashflow import FloatingRateCashflow
-from quantfinpy.data.ir.curve import InterestRateCurveId, InterestRateIndex
+from quantfinpy.data.ir.curve import IRForwardCurveId
 from quantfinpy.enum.currency import Currency
+from quantfinpy.enum.ir_index import InterestRateIndex
 from quantfinpy.instrument.ir.swap.fixed_float import IRFixedFloatSwap
 from quantfinpy.instrument.ir.swap.fixed_leg import IRFixedLeg
 from quantfinpy.instrument.ir.swap.floating_leg import IRFloatingLeg
@@ -36,9 +36,9 @@ def default_ir_curve_id(
     default_currency: Currency,
     default_projected_cashflow_tenor: DateOffset,
     default_ir_curve_index: InterestRateIndex,
-) -> InterestRateCurveId:
-    return InterestRateCurveId(
-        default_ir_curve_index, default_currency, default_projected_cashflow_tenor
+) -> IRForwardCurveId:
+    return IRForwardCurveId(
+        default_currency, default_ir_curve_index, default_projected_cashflow_tenor
     )
 
 
@@ -55,7 +55,7 @@ def default_fixed_cashflow(
 def default_floating_cashflow(
     default_currency: Currency,
     default_projected_cashflow_tenor: DateOffset,
-    default_ir_curve_id: InterestRateCurveId,
+    default_ir_curve_id: IRForwardCurveId,
 ) -> FloatingRateCashflow:
     return FloatingRateCashflow(
         1.0, default_currency, default_projected_cashflow_tenor, default_ir_curve_id

@@ -11,13 +11,13 @@ from quantfinpy.instrument.option import OptionExerciseType, OptionSide
 
 @pytest.mark.parametrize("option_side", OptionSide)
 @pytest.mark.parametrize("exercise", OptionExerciseType)
-def test_equity_option_ctor(
+def test_option_ctor(
     default_fx_spot: FXSpot, option_side: OptionSide, exercise: OptionExerciseType
 ):
     # Building Equity Option as option on equity share for a realistic strike and the maturity as today.
     strike: float = 1.10
     maturity: date = date.today()
-    option = FXOption(option_side, exercise, default_fx_spot, strike, maturity)
+    option = FXOption(default_fx_spot, option_side, exercise, strike, maturity)
 
     # Checking the built equity option.
     assert isinstance(option, FXOption)

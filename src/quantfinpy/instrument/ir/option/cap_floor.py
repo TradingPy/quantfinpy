@@ -7,7 +7,7 @@ from quantfinpy.instrument.option import Option, OptionExerciseType, OptionSide
 
 
 @attrs(frozen=True, slots=True, auto_attribs=True, init=False)
-class CapFloor(Option):
+class CapFloor(Option[IRFloatingLeg]):
     """Interface for IR Cap/Floor, i.e. option on floating rate note."""
 
     def __init__(
@@ -17,9 +17,9 @@ class CapFloor(Option):
         floating_rate_note: IRFloatingLeg,
     ):
         super().__init__(
+            floating_rate_note,
             capfloor_side,
             OptionExerciseType.EUROPEAN,
-            floating_rate_note,
             capfloor_rate,
             floating_rate_note.maturity,
         )

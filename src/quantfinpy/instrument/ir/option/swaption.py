@@ -7,7 +7,7 @@ from quantfinpy.instrument.option import Option, OptionExerciseType, OptionSide
 
 
 @attrs(slots=True, frozen=True, auto_attribs=True, init=False)
-class IRSwaption(Option):
+class IRSwaption(Option[IRFixedFloatSwap]):
     """Option on IR FixedFloat swap."""
 
     def __init__(
@@ -18,9 +18,9 @@ class IRSwaption(Option):
         strike_rate: float,
     ):
         super().__init__(
+            swap,
             option_side,
             option_exercise,
-            swap,
             strike_rate,
             swap.receiver_fixed_leg.starting_date,
         )

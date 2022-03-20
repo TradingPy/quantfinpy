@@ -5,7 +5,7 @@ from datetime import date
 
 from cytoolz import last  # pylint: disable=no-name-in-module
 
-from quantfinpy.data.cashflow.cashflow import Cashflow, ProjectedCashflow
+from quantfinpy.data.cashflow.cashflow import Cashflow, ForwardCashflow
 from quantfinpy.utils.schedule import ScheduledValues
 
 if sys.version_info >= (3, 10):
@@ -26,6 +26,6 @@ def schedule_maturity(cashflow_schedule: CashflowSchedule) -> date:
     """
     last_cashflow_date, last_cashflow = last(cashflow_schedule.items)
     assert isinstance(last_cashflow_date, date)
-    if isinstance(last_cashflow, ProjectedCashflow):
+    if isinstance(last_cashflow, ForwardCashflow):
         return last_cashflow_date + last_cashflow.tenor  # type: ignore
     return last_cashflow_date

@@ -17,7 +17,7 @@ def test_equity_option_ctor(
     # Building Equity Option as option on equity share for a realistic strike and the maturity as today.
     strike: float = 99.0
     maturity: date = date.today()
-    option = EquityOption(option_side, exercise, default_share, strike, maturity)
+    option = EquityOption(default_share, option_side, exercise, strike, maturity)
 
     # Checking the built equity option.
     assert isinstance(option, EquityOption)

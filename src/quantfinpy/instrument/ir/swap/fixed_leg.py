@@ -3,7 +3,7 @@
 from attr import attrs
 
 from quantfinpy.data.cashflow.cashflow import FixedRateCashflow
-from quantfinpy.instrument.ir.cashflow.schedule import CashflowScheduleInstrument
+from quantfinpy.instrument.cashflow.schedule import CashflowScheduleInstrument
 
 
 @attrs(slots=True, frozen=True, auto_attribs=True)

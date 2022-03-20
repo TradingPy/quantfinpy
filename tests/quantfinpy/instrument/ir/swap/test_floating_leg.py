@@ -2,8 +2,8 @@
 
 import pandas as pd
 
+from quantfinpy.data.cashflow.cashflow import FloatingRateCashflow
 from quantfinpy.data.cashflow.schedule import CashflowSchedule
-from quantfinpy.data.ir.cashflow import FloatingRateCashflow
 from quantfinpy.instrument.ir.swap.floating_leg import IRFloatingLeg
 
 

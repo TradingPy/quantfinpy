@@ -17,7 +17,7 @@ def test_bond_option_ctor(
     # Building Bond Option as option on default bond for a realistic strike and the maturity at the start of the bond.
     strike: float = 99.0
     maturity: date = next(default_bond.coupon_cashflows.dates)
-    option = BondOption(option_side, exercise, default_bond, strike, maturity)
+    option = BondOption(default_bond, option_side, exercise, strike, maturity)
 
     # Checking the built bond option.
     assert isinstance(option, BondOption)

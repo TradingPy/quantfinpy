@@ -7,9 +7,5 @@ from quantfinpy.instrument.option import Option
 
 
 @attrs(slots=True, frozen=True, auto_attribs=True)
-class EquityOption(Option):
+class EquityOption(Option[EquityShare]):
     """Equity option, i.e. option on Equity share."""
-
-    def __attrs_post_init__(self) -> None:
-        super().__attrs_post_init__()
-        assert isinstance(self.underlying, EquityShare)

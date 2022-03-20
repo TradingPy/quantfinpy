@@ -9,8 +9,8 @@ from pandas import DateOffset
 
 from quantfinpy.data.cashflow.cashflow import FixedRateCashflow
 from quantfinpy.data.cashflow.schedule import CashflowSchedule
+from quantfinpy.instrument.cashflow.schedule import CashflowScheduleInstrument
 from quantfinpy.instrument.credit.instrument import CreditInstrument
-from quantfinpy.instrument.ir.cashflow.schedule import CashflowScheduleInstrument
 from quantfinpy.instrument.portfolio import Position
 from quantfinpy.instrument.swap import Swap
 

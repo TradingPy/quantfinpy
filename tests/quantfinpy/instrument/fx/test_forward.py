@@ -15,6 +15,5 @@ def test_forward_ctor(default_fx_spot: FXSpot):
     # Checking built fx spot.
     assert isinstance(fx_fwd, FXForward)
     assert fx_fwd.underlying == default_fx_spot
-    assert fx_fwd.underlying_fx_spot == default_fx_spot
     assert fx_fwd.strike == strike
     assert fx_fwd.maturity == maturity
