@@ -2,7 +2,6 @@
 
 from attr import attrs
 
-from quantfinpy.enum.currency import Currency
 from quantfinpy.instrument.instrument import Instrument
 
 
@@ -12,8 +11,6 @@ class EquityShare(Instrument):
 
     company: str
     """company name."""
-    currency: Currency
-    """share's currency."""
 
     @classmethod
     def validate_value(cls, instrument_value: float) -> None:

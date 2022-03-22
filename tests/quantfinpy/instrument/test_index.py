@@ -9,7 +9,7 @@ def test_index_ctor():
     # Building the index as an equity index whose constituents are GAFA shares.
     constituents = tuple(
         map(
-            lambda company: EquityShare(company=company, currency=Currency.USD),
+            EquityShare,
             ("GOOGLE", "AMAZON", "META", "APPLE"),
         )
     )
