@@ -1,27 +1,26 @@
 """Pricing of scheduled cashflow instruments."""
 
-from datetime import date
 
-from quantfinpy.data.curve.discount import DiscountCurve
+from quantfinpy.data.cashflow.cashflow import ObservedCashflow
+from quantfinpy.data.data import DataSet
 from quantfinpy.instrument.cashflow.schedule import CashflowScheduleInstrument
+from quantfinpy.pricing.cashflow.cashflow import forward_value
+from quantfinpy.pricing.forward import forward_values
+from quantfinpy.utils.schedule import ScheduledValues
 
 
-def scheduled_cashflows_value(
-    cashflow_instr: CashflowScheduleInstrument,
-    discount_curve: DiscountCurve,
-    valuation_date: date,
-) -> float:
-    """
-    Compute the value of the scheduled cashflows at a specific date with the discounting underlying the provided
-    discount curve.
+@forward_values.register
+def __cashflow_schedule_forward_values(
+    cashflows: CashflowScheduleInstrument, data: DataSet
+) -> ScheduledValues[ObservedCashflow]:
 
-    :param cashflow_instr: scheduled cashflows to value.
-    :param discount_curve: discount curve to be used to discount the bond's cashflow, i.e. coupons and principal.
-    :param valuation_date: reference date for the valuation.
-    :return: sum of scheduled cashflows' values at the valuation date.
-
-    Note:
-        Only actual cashflows without projections are supported here.
-
-    """
-    return 100.0
+    return ScheduledValues(
+        tuple(
+            map(
+                lambda dated_cashflow: forward_value(
+                    dated_cashflow[1], data, dated_cashflow[0]
+                ),
+                cashflows.scheduled_cashflows.items,
+            )
+        )
+    )

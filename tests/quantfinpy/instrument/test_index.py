@@ -1,6 +1,5 @@
 """Test cases for instrument indices."""
 
-from quantfinpy.enum.currency import Currency
 from quantfinpy.instrument.equity.share import EquityShare
 from quantfinpy.instrument.index import Index
 

@@ -33,6 +33,7 @@ def forward_value(
     raise NotImplementedError(f"Forward value for {type(cashflow)} is not supported.")
 
 
+# pylint: disable=unused-argument
 @forward_value.register
 def __observed_forward_value(
     cashflow: ObservedCashflow, data: DataSet, cashflow_date: date
@@ -49,6 +50,7 @@ def __forward_cashflow_forward_value(
     )
 
 
+# pylint: disable=unused-argument
 @forward_value.register
 def __fixed_rate_forward_value(
     cashflow: FixedRateCashflow, data: DataSet, cashflow_date: date

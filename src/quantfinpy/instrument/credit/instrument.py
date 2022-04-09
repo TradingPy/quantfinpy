@@ -4,7 +4,7 @@ from datetime import date
 
 from attr import attrs
 
-from quantfinpy.data.cashflow.cashflow import Cashflow
+from quantfinpy.data.cashflow.cashflow import Cashflow, ObservedCashflow
 from quantfinpy.enum.currency import Currency
 from quantfinpy.instrument.instrument import Instrument
 
@@ -25,7 +25,9 @@ class CreditInstrument(Instrument):
     ):
         object.__setattr__(self, "reference_entity", reference_entity)
         object.__setattr__(self, "maturity", maturity)
-        object.__setattr__(self, "repayment_cashflow", Cashflow(notional, currency))
+        object.__setattr__(
+            self, "repayment_cashflow", ObservedCashflow(notional, currency)
+        )
 
     @property
     def notional(self) -> float:

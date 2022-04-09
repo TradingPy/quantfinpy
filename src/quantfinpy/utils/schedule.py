@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 from datetime import date
-from typing import Generic, Iterable, Iterator, Tuple, Type, TypeVar
+from functools import singledispatchmethod
+from itertools import chain
+from typing import Any, Generic, Iterable, Iterator, Tuple, Type, TypeVar
 
 from attr import attrs
 
@@ -53,3 +55,15 @@ class ScheduledValues(Generic[ValueType]):
         :return: instance of specified cls.
         """
         return cls(tuple(map(lambda schedule_date: (schedule_date, value), dates)))
+
+    @singledispatchmethod
+    def __add__(self, other: Any) -> ScheduledValues[ValueType]:
+        raise NotImplementedError
+
+    @__add__.register(tuple)
+    def _add_dated_value(
+        self, other: Tuple[date, ValueType]
+    ) -> "ScheduledValues[ValueType]":
+        previous_iter = filter(lambda dated_val: dated_val[0] <= other[0], self.items)
+        past_iter = filter(lambda dated_val: dated_val[0] > other[0], self.items)
+        return self.__class__(tuple(chain(previous_iter, (other,), past_iter)))

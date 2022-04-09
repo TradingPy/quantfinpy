@@ -560,6 +560,14 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "multimethod"
+version = "1.7"
+description = "Multiple argument dispatching."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[[package]]
 name = "mypy"
 version = "0.931"
 description = "Optional static typing for Python"
@@ -1335,7 +1343,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "655fc94e43703ece14a58d8e60359343b5d2133bd130e1f9b5910108e9cbd354"
+content-hash = "d302f4679489e09e00064ad0bec8a82f7c2d278a1246639870b85402fb5571ad"
 
 [metadata.files]
 alabaster = [
@@ -1718,6 +1726,10 @@ mccabe = [
 mistune = [
     {file = "mistune-0.8.4-py2.py3-none-any.whl", hash = "sha256:88a1051873018da288eee8538d476dffe1262495144b33ecb586c4ab266bb8d4"},
     {file = "mistune-0.8.4.tar.gz", hash = "sha256:59a3429db53c50b5c6bcc8a07f8848cb00d7dc8bdb431a4ab41920d201d4756e"},
+]
+multimethod = [
+    {file = "multimethod-1.7-py3-none-any.whl", hash = "sha256:c9ed3841ddb5ca314ad12ca88d64e4a75d283e98f16622b580bb90fe72f79231"},
+    {file = "multimethod-1.7.tar.gz", hash = "sha256:7b8a16c03f4968e1daea7e4d48cbe78cc9b4b085fb1088931d19778b914f9891"},
 ]
 mypy = [
     {file = "mypy-0.931-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:3c5b42d0815e15518b1f0990cff7a705805961613e701db60387e6fb663fe78a"},

@@ -20,4 +20,6 @@ def forward_values(
     :param data: data to be used to value the instrument.
     :return: timeseries of forward values.
     """
-    raise NotImplementedError
+    raise NotImplementedError(
+        f"forward_values calculation is not implemented for instrument {type(instrument)}."
+    )
