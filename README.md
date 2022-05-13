@@ -26,7 +26,13 @@ it means that you need to delete doc/source/_autosummary folder and rerun tox.
 
 ## Installation
 
+**End user:**
+
 $ pip install quantfinpy
+
+**Developer**
+
+Running the tox.ini with [tox](https://tox.wiki/en/latest/)
 
 ## Contributing 
 
