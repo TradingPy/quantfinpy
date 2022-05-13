@@ -32,7 +32,9 @@ $ pip install quantfinpy
 
 **Developer**
 
-Running the tox.ini with [tox](https://tox.wiki/en/latest/)
+Running the tox.ini with [tox](https://tox.wiki/en/latest/). 
+
+NB: The environment responsible for running tox initially should have tox and poetry.
 
 ## Contributing 
 
