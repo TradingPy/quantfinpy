@@ -30,4 +30,4 @@ $ pip install quantfinpy
 
 ## Contributing 
 
-Contributions are welcome. Please follow this document for more information at `CONTRIBUTING.md`.
+Contributions are welcome. Please follow this [document](https://github.com/TradingPy/quantfinpy/blob/main/CONTRIBUTING.md) for more information.
