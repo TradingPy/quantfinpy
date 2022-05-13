@@ -26,4 +26,5 @@ Types of issues that can raised:
 - new features.
 - bugs.
 - package support.
+- clarify existing documentation like this one :).
 - etc.
