@@ -4,8 +4,7 @@ from datetime import date
 
 import pytest
 
-from quantfinpy.instrument.credit.bond import Bond
-from quantfinpy.instrument.credit.bond_option import BondOption
+from quantfinpy.instrument import Bond, BondOption
 from quantfinpy.instrument.option import OptionExerciseType, OptionSide
 
 

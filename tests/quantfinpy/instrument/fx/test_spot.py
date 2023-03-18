@@ -1,7 +1,7 @@
 """Test cases for fx spot's interface."""
 
 from quantfinpy.enum.currency import Currency
-from quantfinpy.instrument.fx.spot import FXSpot
+from quantfinpy.instrument import FXSpot
 
 
 def test_fx_spot_ctor():

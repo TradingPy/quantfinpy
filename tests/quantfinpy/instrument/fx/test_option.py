@@ -4,8 +4,7 @@ from datetime import date
 
 import pytest
 
-from quantfinpy.instrument.fx.option import FXOption
-from quantfinpy.instrument.fx.spot import FXSpot
+from quantfinpy.instrument import FXOption, FXSpot
 from quantfinpy.instrument.option import OptionExerciseType, OptionSide
 
 

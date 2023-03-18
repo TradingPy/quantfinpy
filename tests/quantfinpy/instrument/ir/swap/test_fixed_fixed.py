@@ -5,8 +5,7 @@ from pandas import DateOffset
 
 from quantfinpy.data.cashflow.cashflow import FixedRateCashflow
 from quantfinpy.enum.currency import Currency
-from quantfinpy.instrument.ir.swap.fixed_fixed import IRFixedFixedSwap
-from quantfinpy.instrument.ir.swap.fixed_leg import IRFixedLeg
+from quantfinpy.instrument import IRFixedFixedSwap, IRFixedLeg
 
 
 def test_ir_fixed_fixed_swap_ctor(

@@ -8,7 +8,7 @@ from pandas import DateOffset
 from quantfinpy.data.cashflow.cashflow import FixedRateCashflow, ObservedCashflow
 from quantfinpy.data.cashflow.schedule import CashflowSchedule
 from quantfinpy.enum.currency import Currency
-from quantfinpy.instrument.credit.bond import Bond
+from quantfinpy.instrument import Bond
 
 
 def test_bond_ctor():

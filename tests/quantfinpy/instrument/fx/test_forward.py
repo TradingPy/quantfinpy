@@ -2,8 +2,7 @@
 
 from datetime import date
 
-from quantfinpy.instrument.fx.forward import FXForward
-from quantfinpy.instrument.fx.spot import FXSpot
+from quantfinpy.instrument import FXForward, FXSpot
 
 
 def test_forward_ctor(default_fx_spot: FXSpot):

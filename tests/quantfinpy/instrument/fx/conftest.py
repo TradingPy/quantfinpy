@@ -3,7 +3,7 @@
 import pytest
 
 from quantfinpy.enum.currency import Currency
-from quantfinpy.instrument.fx.spot import FXSpot
+from quantfinpy.instrument import FXSpot
 
 
 @pytest.fixture(scope="module")

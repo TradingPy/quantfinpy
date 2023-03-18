@@ -2,8 +2,7 @@
 
 import pytest
 
-from quantfinpy.instrument.ir.option.swaption import IRSwaption
-from quantfinpy.instrument.ir.swap.fixed_float import IRFixedFloatSwap
+from quantfinpy.instrument import IRFixedFloatSwap, IRSwaption
 from quantfinpy.instrument.option import OptionExerciseType, OptionSide
 
 

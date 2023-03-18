@@ -4,7 +4,7 @@ import pandas as pd
 
 from quantfinpy.data.cashflow.cashflow import FloatingRateCashflow
 from quantfinpy.data.cashflow.schedule import CashflowSchedule
-from quantfinpy.instrument.ir.swap.floating_leg import IRFloatingLeg
+from quantfinpy.instrument import IRFloatingLeg
 
 
 def test_ir_floating_leg_ctor(

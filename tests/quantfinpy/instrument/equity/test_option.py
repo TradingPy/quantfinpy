@@ -4,8 +4,7 @@ from datetime import date
 
 import pytest
 
-from quantfinpy.instrument.equity.option import EquityOption
-from quantfinpy.instrument.equity.share import EquityShare
+from quantfinpy.instrument import EquityOption, EquityShare
 from quantfinpy.instrument.option import OptionExerciseType, OptionSide
 
 

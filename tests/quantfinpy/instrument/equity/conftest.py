@@ -2,7 +2,7 @@
 
 import pytest
 
-from quantfinpy.instrument.equity.share import EquityShare
+from quantfinpy.instrument import EquityShare
 
 
 @pytest.fixture(scope="module")

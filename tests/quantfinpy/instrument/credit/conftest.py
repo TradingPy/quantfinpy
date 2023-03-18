@@ -9,7 +9,7 @@ from pandas import DateOffset
 from quantfinpy.data.cashflow.cashflow import Cashflow, FixedRateCashflow
 from quantfinpy.data.cashflow.schedule import CashflowSchedule
 from quantfinpy.enum.currency import Currency
-from quantfinpy.instrument.credit.bond import Bond
+from quantfinpy.instrument import Bond
 
 
 @pytest.fixture(scope="module")

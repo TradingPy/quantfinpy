@@ -4,7 +4,7 @@ import pandas as pd
 
 from quantfinpy.data.cashflow.cashflow import FixedRateCashflow
 from quantfinpy.data.cashflow.schedule import CashflowSchedule
-from quantfinpy.instrument.ir.swap.fixed_leg import IRFixedLeg
+from quantfinpy.instrument import IRFixedLeg
 
 
 def test_ir_fixed_leg_ctor(

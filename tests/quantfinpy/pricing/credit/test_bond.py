@@ -15,7 +15,7 @@ from quantfinpy.data.cashflow.schedule import CashflowSchedule
 from quantfinpy.data.curve.discount import DiscountCurve, DiscountCurveId
 from quantfinpy.data.data import DataSet
 from quantfinpy.enum.currency import Currency
-from quantfinpy.instrument.credit.bond import Bond
+from quantfinpy.instrument import Bond
 from quantfinpy.pricing.discount import discount_value
 
 

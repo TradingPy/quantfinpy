@@ -2,8 +2,7 @@
 
 import pytest
 
-from quantfinpy.instrument.ir.option.cap_floor import CapFloor
-from quantfinpy.instrument.ir.swap.floating_leg import IRFloatingLeg
+from quantfinpy.instrument import CapFloor, IRFloatingLeg
 from quantfinpy.instrument.option import OptionExerciseType, OptionSide
 
 

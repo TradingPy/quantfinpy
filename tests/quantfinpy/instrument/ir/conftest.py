@@ -11,9 +11,7 @@ from quantfinpy.data.cashflow.schedule import CashflowSchedule
 from quantfinpy.data.ir.curve import IRForwardCurveId
 from quantfinpy.enum.currency import Currency
 from quantfinpy.enum.ir_index import InterestRateIndex
-from quantfinpy.instrument.ir.swap.fixed_float import IRFixedFloatSwap
-from quantfinpy.instrument.ir.swap.fixed_leg import IRFixedLeg
-from quantfinpy.instrument.ir.swap.floating_leg import IRFloatingLeg
+from quantfinpy.instrument import IRFixedFloatSwap, IRFixedLeg, IRFloatingLeg
 
 
 @pytest.fixture(scope="module")

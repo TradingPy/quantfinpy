@@ -5,8 +5,7 @@ from datetime import date
 import pandas as pd
 from pandas import DateOffset
 
-from quantfinpy.instrument.credit.bond import Bond
-from quantfinpy.instrument.credit.cds import CDS
+from quantfinpy.instrument import CDS, Bond
 
 
 def test_cds_ctor(default_bond: Bond):

@@ -1,6 +1,6 @@
 """Test cases for equity shares."""
 
-from quantfinpy.instrument.equity.share import EquityShare
+from quantfinpy.instrument import EquityShare
 
 
 def test_equity_share_ctor():
