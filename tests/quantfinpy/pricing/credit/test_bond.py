@@ -5,7 +5,7 @@ from math import exp
 from typing import Dict, Tuple
 
 import pandas as pd
-from attr import attrs
+from attrs import define
 
 # To import forward_values definition for Bond
 # TODO: Find a way to register and dispatch without having unclear imports.
@@ -19,7 +19,7 @@ from quantfinpy.instrument import Bond
 from quantfinpy.pricing.discount import discount_value
 
 
-@attrs(slots=True, frozen=True, auto_attribs=True)
+@define(frozen=True)
 class ZeroRateDiscountCurve(DiscountCurve):
     zero_rates: Dict[Tuple[date, date], float]
 
