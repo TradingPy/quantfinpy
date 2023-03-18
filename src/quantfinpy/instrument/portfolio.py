@@ -2,12 +2,12 @@
 
 from typing import Tuple
 
-from attr import attrs
+from attrs import define
 
 from quantfinpy.instrument.instrument import Instrument
 
 
-@attrs(slots=True, frozen=True, auto_attribs=True)
+@define(frozen=True)
 class Position:
     """Position in an instrument, i.e. a specific quantity of an instrument."""
 
@@ -17,7 +17,7 @@ class Position:
     """quantity."""
 
 
-@attrs(slots=True, frozen=True, auto_attribs=True)
+@define(frozen=True)
 class Portfolio(Instrument):
     """Interface for portfolio of instruments."""
 

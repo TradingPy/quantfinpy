@@ -9,8 +9,7 @@ from attr import attrs
 
 # To import forward_values definition for Bond
 # TODO: Find a way to register and dispatch without having unclear imports.
-# pylint: disable=unused-import
-import quantfinpy.pricing.credit.bond
+import quantfinpy.pricing.credit.bond  # noqa: F401
 from quantfinpy.data.cashflow.cashflow import ObservedCashflow
 from quantfinpy.data.cashflow.schedule import CashflowSchedule
 from quantfinpy.data.curve.discount import DiscountCurve, DiscountCurveId
@@ -41,7 +40,7 @@ def test_bond_present_value():
         coupon_dates, coupon_cashflow
     )
     repayment_coupon = ObservedCashflow(100.0, Currency.USD)
-    bond = Bond(
+    bond = Bond.create(
         reference_entity,
         repayment_coupon.notional,
         repayment_coupon.currency,

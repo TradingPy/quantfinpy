@@ -3,14 +3,14 @@
 from datetime import date
 from typing import Iterable
 
-from attr import attrs
+from attrs import define
 
 from quantfinpy.data.cashflow.cashflow import Cashflow
 from quantfinpy.data.cashflow.schedule import CashflowSchedule, schedule_maturity
 from quantfinpy.instrument.instrument import Instrument
 
 
-@attrs(slots=True, frozen=True, auto_attribs=True)
+@define(frozen=True)
 class CashflowScheduleInstrument(Instrument):
     """Instrument wrapping a schedule of cashflows."""
 

@@ -2,27 +2,27 @@
 
 from typing import Callable, ClassVar, Mapping, Type, TypeVar
 
-from attr import attrs
+from attrs import define
 
 
-@attrs(slots=True, frozen=True, auto_attribs=True)
+@define(frozen=True)
 class Data:
     """Interface for a data object."""
 
 
-@attrs(slots=True, frozen=True, auto_attribs=True)
+@define(frozen=True)
 class DataId:
     """Identify a data object."""
 
     data_class: ClassVar[Type[Data]] = Data
 
 
-DecoratedDataIdType = TypeVar("DecoratedDataIdType", bound=Type[DataId])
+DecoratedDataId = TypeVar("DecoratedDataId", bound=Type[DataId])
 
 
 def map_data_class(
     data_type: Type[Data],
-) -> Callable[[DecoratedDataIdType], DecoratedDataIdType]:
+) -> Callable[[DecoratedDataId], DecoratedDataId]:
     """
     Decorate data id classes with their associated data type.
 
@@ -30,14 +30,14 @@ def map_data_class(
     :return: data id class decorator.
     """
 
-    def wrapper(data_id_class: DecoratedDataIdType) -> DecoratedDataIdType:
+    def wrapper(data_id_class: DecoratedDataId) -> DecoratedDataId:
         setattr(data_id_class, "data_class", data_type)
         return data_id_class
 
     return wrapper
 
 
-@attrs(slots=True, frozen=True, auto_attribs=True)
+@define(frozen=True)
 class DataSet:
     """Mapping between data ids and data objects."""
 

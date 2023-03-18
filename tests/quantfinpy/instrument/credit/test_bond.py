@@ -3,7 +3,6 @@
 from datetime import date
 
 import pandas as pd
-from cytoolz.itertoolz import last  # pylint: disable=no-name-in-module
 from pandas import DateOffset
 
 from quantfinpy.data.cashflow.cashflow import FixedRateCashflow, ObservedCashflow
@@ -21,9 +20,9 @@ def test_bond_ctor():
     coupon_cashflows = CashflowSchedule.build_from_single_value_definition(
         coupon_dates, coupon_cashflow
     )
-    maturity = last(coupon_dates) + coupon_tenor
+    maturity = coupon_dates[-1] + coupon_tenor
     repayment_coupon = ObservedCashflow(1.0, Currency.USD)
-    bond = Bond(
+    bond = Bond.create(
         reference_entity,
         repayment_coupon.notional,
         repayment_coupon.currency,

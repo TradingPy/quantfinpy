@@ -1,11 +1,11 @@
 """Interfaces for equity shares."""
 
-from attr import attrs
+from attrs import define
 
 from quantfinpy.instrument.instrument import Instrument
 
 
-@attrs(frozen=True, slots=True, auto_attribs=True)
+@define(frozen=True)
 class EquityShare(Instrument):
     """Equity share."""
 

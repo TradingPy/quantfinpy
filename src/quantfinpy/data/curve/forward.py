@@ -2,13 +2,13 @@
 
 from datetime import date
 
-from attr import attrs
+from attrs import define
 
 from quantfinpy.data.curve.curve import Curve, CurveId
 from quantfinpy.data.data import map_data_class
 
 
-@attrs(slots=True, auto_attribs=True, frozen=True)
+@define(frozen=True)
 class ForwardCurve(Curve):
     """Curve from which forward rates can be derived from."""
 
@@ -24,6 +24,6 @@ class ForwardCurve(Curve):
 
 
 @map_data_class(ForwardCurve)
-@attrs(slots=True, auto_attribs=True, frozen=True)
+@define(frozen=True)
 class ForwardCurveId(CurveId):
     """Identify the different forward curve ids."""

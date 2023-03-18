@@ -11,7 +11,7 @@ from quantfinpy.instrument.option import OptionExerciseType, OptionSide
 def test_ir_capfloor_ctor(default_floating_leg: IRFloatingLeg, option_side: OptionSide):
     # Building Capfloor as option on floating rate note (IRFloatingLeg) with a realistic capfloor rate.
     capfloor_rate: float = 0.01
-    option = CapFloor(option_side, capfloor_rate, default_floating_leg)
+    option = CapFloor.create(option_side, capfloor_rate, default_floating_leg)
 
     # Checking the built capfloor.
     assert isinstance(option, CapFloor)

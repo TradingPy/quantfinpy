@@ -1,10 +1,9 @@
 """Interface for credit default swaps."""
 
 from datetime import date
-from typing import Iterable, Iterator
+from typing import Iterator, Sequence
 
-from attr import attrs
-from cytoolz.itertoolz import last  # pylint: disable=no-name-in-module
+from attrs import define
 from pandas import DateOffset
 
 from quantfinpy.data.cashflow.cashflow import FixedRateCashflow
@@ -15,7 +14,7 @@ from quantfinpy.instrument.portfolio import Position
 from quantfinpy.instrument.swap import Swap
 
 
-@attrs(slots=True, frozen=True, auto_attribs=True, init=False)
+@define(frozen=True)
 class CDS(Swap):
     """Interface for credit default swaps, i.e. swap an instrument whose value might be affected by a credit event."""
 
@@ -23,15 +22,16 @@ class CDS(Swap):
     """CDS spread, i.e. the insurance premium."""
 
     # TODO: derive payment tenor from payment dates assuming that tenor between dates is constant.
-    def __init__(
-        self,
+    @classmethod
+    def create(
+        cls,
         cds_spread: float,
         credit_instrument: CreditInstrument,
-        payment_dates: Iterable[date],
+        payment_dates: Sequence[date],
         payment_tenor: DateOffset,
-    ):
-        assert last(payment_dates) <= credit_instrument.maturity, (
-            f"Last payment date {last(payment_dates)} is past the maturity of the underlying credit instrument "
+    ) -> "CDS":
+        assert payment_dates[-1] <= credit_instrument.maturity, (
+            f"Last payment date {payment_dates[-1]} is past the maturity of the underlying credit instrument "
             f"{credit_instrument.maturity}."
         )
 
@@ -46,10 +46,10 @@ class CDS(Swap):
                 payment_dates, premium_cashflow
             )
         )
-        super().__init__(
-            (Position(premium_cashflows, -1.0), Position(credit_instrument, 1.0))
+        return cls(
+            (Position(premium_cashflows, -1.0), Position(credit_instrument, 1.0)),
+            cds_spread,
         )
-        object.__setattr__(self, "cds_spread", cds_spread)
 
     @property
     def credit_instrument(self) -> CreditInstrument:

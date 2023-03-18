@@ -16,7 +16,9 @@ def test_ir_swaption_ctor(
 ):
     # Building IRSwaption as option on ir fixed float swap with a realistic strike and the maturity as today.
     strike_rate: float = 0.01
-    option = IRSwaption(option_side, exercise, default_fixed_float_swap, strike_rate)
+    option = IRSwaption.create(
+        option_side, exercise, default_fixed_float_swap, strike_rate
+    )
 
     # Checking the built swaption.
     assert isinstance(option, IRSwaption)

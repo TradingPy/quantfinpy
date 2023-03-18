@@ -2,12 +2,12 @@
 
 from typing import Tuple
 
-from attr import attrs
+from attrs import define
 
 from quantfinpy.instrument.instrument import Instrument
 
 
-@attrs(slots=True, frozen=True, auto_attribs=True)
+@define(frozen=True)
 class Index(Instrument):
     """Instrument index, i.e. set of instruments."""
 

@@ -13,7 +13,6 @@ from quantfinpy.utils.schedule import ScheduledValues
 def __cashflow_schedule_forward_values(
     cashflows: CashflowScheduleInstrument, data: DataSet
 ) -> ScheduledValues[ObservedCashflow]:
-
     return ScheduledValues(
         tuple(
             map(

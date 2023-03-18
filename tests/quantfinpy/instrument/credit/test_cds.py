@@ -14,7 +14,7 @@ def test_cds_ctor(default_bond: Bond):
     payment_dates = pd.date_range(start=date.today(), periods=10, freq="3M")
     payment_tenor = DateOffset(month=3)
     cds_spread = 0.012
-    cds = CDS(cds_spread, default_bond, payment_dates, payment_tenor)
+    cds = CDS.create(cds_spread, default_bond, payment_dates, payment_tenor)
 
     # Checking built CDS.
     assert isinstance(cds, CDS)

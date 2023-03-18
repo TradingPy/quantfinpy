@@ -1,12 +1,12 @@
 """Floating IR leg, i.e. schedule of cashflows associated to a floating rate or multiple floating rates."""
 
-from attr import attrs
+from attrs import define
 
 from quantfinpy.data.cashflow.cashflow import FloatingRateCashflow
 from quantfinpy.instrument.cashflow.schedule import CashflowScheduleInstrument
 
 
-@attrs(slots=True, frozen=True, auto_attribs=True)
+@define(frozen=True)
 class IRFloatingLeg(CashflowScheduleInstrument):
     """IR Floating leg, i.e. schedule of floating rate cashflows."""
 

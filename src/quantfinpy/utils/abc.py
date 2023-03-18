@@ -15,6 +15,7 @@ def abstract_interface(abstract_class: Type[AbstractClass]) -> Type[AbstractClas
     :param abstract_class: class to be decorated.
     :return: decorated class.
     """
+
     # pylint: disable=unused-argument
     def __new__(cls: Type[DerivedClass], *args, **kwargs) -> DerivedClass:  # type: ignore
         if cls is abstract_class:

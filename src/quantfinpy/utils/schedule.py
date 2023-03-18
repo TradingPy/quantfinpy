@@ -5,23 +5,23 @@ from __future__ import annotations
 from datetime import date
 from functools import singledispatchmethod
 from itertools import chain
-from typing import Any, Generic, Iterable, Iterator, Tuple, Type, TypeVar
+from typing import Any, Generic, Iterable, Iterator, Sequence, Tuple, Type, TypeVar
 
 from attr import attrs
 
 from quantfinpy.utils.sort import assert_sorted_iterator
 
-ValueType = TypeVar("ValueType", covariant=False)
+Value = TypeVar("Value", covariant=False)
 
 
 ScheduledValuesSubClass = TypeVar("ScheduledValuesSubClass")
 
 
 @attrs(frozen=True, slots=True, auto_attribs=True)
-class ScheduledValues(Generic[ValueType]):
+class ScheduledValues(Generic[Value]):
     """Scheduled values, i.e. timeseries."""
 
-    schedule: Iterable[Tuple[date, ValueType]]
+    schedule: Sequence[Tuple[date, Value]]
 
     def __attrs_post_init__(self) -> None:
         assert_sorted_iterator(self.dates)
@@ -32,21 +32,21 @@ class ScheduledValues(Generic[ValueType]):
         return map(lambda dated_val: dated_val[0], self.schedule)
 
     @property
-    def values(self) -> Iterator[ValueType]:
+    def values(self) -> Iterator[Value]:
         """Get schedule's values."""
         return map(lambda dated_val: dated_val[1], self.schedule)
 
     @property
-    def items(self) -> Iterator[Tuple[date, ValueType]]:
+    def items(self) -> Iterator[Tuple[date, Value]]:
         """Get schedule's iterator."""
         return iter(self.schedule)
 
     @classmethod
     def build_from_single_value_definition(
-        cls: Type[ScheduledValues[ValueType]],
+        cls: Type[ScheduledValues[Value]],
         dates: Iterable[date],
-        value: ValueType,
-    ) -> ScheduledValues[ValueType]:
+        value: Value,
+    ) -> ScheduledValues[Value]:
         """
         Build an instance of cls with the same value being associated to the specified dates.
 
@@ -57,13 +57,11 @@ class ScheduledValues(Generic[ValueType]):
         return cls(tuple(map(lambda schedule_date: (schedule_date, value), dates)))
 
     @singledispatchmethod
-    def __add__(self, other: Any) -> ScheduledValues[ValueType]:
+    def __add__(self, other: Any) -> ScheduledValues[Value]:
         raise NotImplementedError
 
     @__add__.register(tuple)
-    def _add_dated_value(
-        self, other: Tuple[date, ValueType]
-    ) -> "ScheduledValues[ValueType]":
+    def _add_dated_value(self, other: Tuple[date, Value]) -> "ScheduledValues[Value]":
         previous_iter = filter(lambda dated_val: dated_val[0] <= other[0], self.items)
         past_iter = filter(lambda dated_val: dated_val[0] > other[0], self.items)
         return self.__class__(tuple(chain(previous_iter, (other,), past_iter)))

@@ -3,8 +3,7 @@
 
 # To import forward_values definition for CashflowScheduleInstrument
 # TODO: Find a way to register and dispatch without having unclear imports.
-# pylint: disable=unused-import
-import quantfinpy.pricing.cashflow.schedule
+import quantfinpy.pricing.cashflow.schedule  # noqa: F401
 from quantfinpy.data.cashflow.cashflow import ObservedCashflow
 from quantfinpy.data.data import DataSet
 from quantfinpy.instrument.cashflow.schedule import CashflowScheduleInstrument

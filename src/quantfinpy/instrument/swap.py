@@ -2,12 +2,12 @@
 
 from typing import Tuple
 
-from attr import attrs
+from attrs import define
 
 from quantfinpy.instrument.portfolio import Portfolio, Position
 
 
-@attrs(slots=True, frozen=True, auto_attribs=True)
+@define(frozen=True)
 class Swap(Portfolio):
     """Interface for swap instruments."""
 

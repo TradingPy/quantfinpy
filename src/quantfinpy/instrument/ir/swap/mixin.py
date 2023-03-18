@@ -11,7 +11,9 @@ class ReceiverIRFixedLegMixin:
 
     def __init_subclass__(cls) -> None:
         if not hasattr(cls, "positions"):
-            raise Exception(f"class {cls.__name__} is missing 'positions' attribute.")
+            raise AttributeError(
+                f"class {cls.__name__} is missing 'positions' attribute."
+            )
 
     @property
     def receiver_fixed_leg(self) -> IRFixedLeg:

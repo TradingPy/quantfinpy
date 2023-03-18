@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from enum import Enum, auto
 
-from attr import attrs
+from attrs import define
 
 from quantfinpy.instrument.instrument import Instrument
 
@@ -30,7 +30,7 @@ class OrderSide(Enum):
         raise NotImplementedError(f"Can't tell if limit has been reached for {self}.")
 
 
-@attrs(slots=True, frozen=True, auto_attribs=True)
+@define(frozen=True)
 class Order:
     """Base interface for all the kinds of orders."""
 

@@ -2,14 +2,14 @@
 
 from datetime import date
 
-from attr import attrs
+from attrs import define
 
-from quantfinpy.data.cashflow.cashflow import Cashflow, ObservedCashflow
+from quantfinpy.data.cashflow.cashflow import ObservedCashflow
 from quantfinpy.enum.currency import Currency
 from quantfinpy.instrument.instrument import Instrument
 
 
-@attrs(slots=True, frozen=True, auto_attribs=True, init=False)
+@define(frozen=True)
 class CreditInstrument(Instrument):
     """Basic instrument underlying most credit instruments, similar to loan from a specific reference entity."""
 
@@ -17,17 +17,8 @@ class CreditInstrument(Instrument):
     """reference entity."""
     maturity: date
     """maturity."""
-    repayment_cashflow: Cashflow
+    repayment_cashflow: ObservedCashflow
     """cashflow repaid at maturity."""
-
-    def __init__(
-        self, reference_entity: str, maturity: date, notional: float, currency: Currency
-    ):
-        object.__setattr__(self, "reference_entity", reference_entity)
-        object.__setattr__(self, "maturity", maturity)
-        object.__setattr__(
-            self, "repayment_cashflow", ObservedCashflow(notional, currency)
-        )
 
     @property
     def notional(self) -> float:

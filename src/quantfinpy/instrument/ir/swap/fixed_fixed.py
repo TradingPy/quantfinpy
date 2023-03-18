@@ -1,6 +1,6 @@
 """Interface for IR Swaps with 2 fixed rate swap legs."""
 
-from attr import attrs
+from attrs import define
 
 from quantfinpy.instrument.ir.swap.fixed_leg import IRFixedLeg
 from quantfinpy.instrument.ir.swap.mixin import ReceiverIRFixedLegMixin
@@ -8,14 +8,15 @@ from quantfinpy.instrument.portfolio import Position
 from quantfinpy.instrument.swap import Swap
 
 
-@attrs(frozen=True, slots=True, auto_attribs=True, init=False)
+@define(frozen=True)
 class IRFixedFixedSwap(ReceiverIRFixedLegMixin, Swap):
     """Swap with 2 IR fixed legs."""
 
-    def __init__(self, receiver_fixed_leg: IRFixedLeg, payer_fixed_leg: IRFixedLeg):
-        object.__setattr__(
-            self,
-            "positions",
+    @classmethod
+    def create(
+        cls, receiver_fixed_leg: IRFixedLeg, payer_fixed_leg: IRFixedLeg
+    ) -> "IRFixedFixedSwap":
+        return cls(
             (Position(receiver_fixed_leg, 1.0), Position(payer_fixed_leg, -1.0)),
         )
 

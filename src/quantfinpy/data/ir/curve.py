@@ -1,6 +1,6 @@
 """Interfaces for base interest rate curve id and object."""
 
-from attr import attrs
+from attrs import define
 from pandas import DateOffset
 
 from quantfinpy.data.curve.discount import DiscountCurveId
@@ -8,7 +8,7 @@ from quantfinpy.data.curve.forward import ForwardCurveId
 from quantfinpy.enum.ir_index import InterestRateIndex
 
 
-@attrs(slots=True, auto_attribs=True, frozen=True)
+@define(frozen=True)
 class IRForwardCurveId(ForwardCurveId):
     """Identify the different interest rate forward curve ids."""
 
@@ -18,7 +18,7 @@ class IRForwardCurveId(ForwardCurveId):
     """Curve's tenor."""
 
 
-@attrs(slots=True, auto_attribs=True, frozen=True)
+@define(frozen=True)
 class IRDiscountCurveId(DiscountCurveId):
     """Identify the different interest rate discount curve ids."""
 

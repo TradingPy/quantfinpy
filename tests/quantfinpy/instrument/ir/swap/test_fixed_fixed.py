@@ -37,7 +37,7 @@ def test_ir_fixed_fixed_swap_ctor(
     payer_leg = IRFixedLeg.build_from_single_cashflow_definition(
         default_cashflow_dates, payer_cashflow
     )
-    ir_fixed_fixed_swap = IRFixedFixedSwap(receiver_leg, payer_leg)
+    ir_fixed_fixed_swap = IRFixedFixedSwap.create(receiver_leg, payer_leg)
 
     # Checking built swap.
     assert isinstance(ir_fixed_fixed_swap, IRFixedFixedSwap)

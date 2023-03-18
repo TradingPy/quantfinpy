@@ -3,8 +3,6 @@
 import sys
 from datetime import date
 
-from cytoolz import last  # pylint: disable=no-name-in-module
-
 from quantfinpy.data.cashflow.cashflow import Cashflow, ForwardCashflow
 from quantfinpy.utils.schedule import ScheduledValues
 
@@ -24,8 +22,8 @@ def schedule_maturity(cashflow_schedule: CashflowSchedule) -> date:
     :param cashflow_schedule: schedule whose maturity date is to be identified.
     :return: maturity date.
     """
-    last_cashflow_date, last_cashflow = last(cashflow_schedule.items)
+    last_cashflow_date, last_cashflow = cashflow_schedule.schedule[-1]
     assert isinstance(last_cashflow_date, date)
     if isinstance(last_cashflow, ForwardCashflow):
-        return last_cashflow_date + last_cashflow.tenor  # type: ignore
+        return last_cashflow_date + last_cashflow.tenor
     return last_cashflow_date

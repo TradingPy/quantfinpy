@@ -87,4 +87,4 @@ def default_floating_leg(
 def default_fixed_float_swap(
     default_fixed_leg: IRFixedLeg, default_floating_leg: IRFloatingLeg
 ) -> IRFixedFloatSwap:
-    return IRFixedFloatSwap(default_fixed_leg, default_floating_leg)
+    return IRFixedFloatSwap.create(default_fixed_leg, default_floating_leg)

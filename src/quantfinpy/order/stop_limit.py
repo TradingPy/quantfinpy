@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from attr import attrs
+from attrs import define
 
 from quantfinpy.order.limit import LimitOrder
 from quantfinpy.order.order import Order
 
 
-@attrs(slots=True, frozen=True, auto_attribs=True)
+@define(frozen=True)
 class StopLimitOrder(Order):
     """Interface for stop limit orders."""
 
@@ -19,7 +19,9 @@ class StopLimitOrder(Order):
 
     @property
     def limit_order(self) -> LimitOrder:
-        """Get the limit order the current instance transforms into once the stop price has been reached."""
+        """
+        Get the limit order the current instance transforms into once the stop price has been reached.
+        """
         return LimitOrder(self.instrument, self.quantity, self.limit)
 
     def stop_price_reached(self, market_price: float) -> bool:

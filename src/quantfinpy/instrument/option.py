@@ -4,9 +4,9 @@ from datetime import date
 from enum import Enum, auto
 from typing import Generic
 
-from attr import attrs
+from attrs import Attribute, define, field
 
-from quantfinpy.instrument.derivative import Derivative, UnderlyingType
+from quantfinpy.instrument.derivative import Derivative, Underlying
 
 
 class OptionSide(Enum):
@@ -27,24 +27,24 @@ class OptionExerciseType(Enum):
     """Exercise at any time up to maturity."""
 
 
-@attrs(slots=True, frozen=True, auto_attribs=True)
-class Option(Derivative[UnderlyingType], Generic[UnderlyingType]):
+@define(frozen=True)
+class Option(Derivative[Underlying], Generic[Underlying]):
     """Interface for options."""
 
     side: OptionSide
     """option's side, i.e. call for long and put for short."""
     exercise_type: OptionExerciseType
     """kind of exercise like european or american."""
-    strike: float
+    strike: float = field()
     """price at which the underlying may be bought or sold."""
     maturity: date
     """end of life of the option."""
 
-    def __attrs_post_init__(self) -> None:
-        super().__attrs_post_init__()
+    @strike.validator
+    def check_strike(self, attribute: Attribute, value: float) -> None:  # type: ignore
         try:
-            self.underlying.validate_value(self.strike)
+            self.underlying.validate_value(value)
         except AssertionError as err:
             raise ValueError(
-                f"Provided strike {self.strike} is not valid for underlying of type {type(self.underlying)}"
+                f"Provided option's strike {value} is not valid for underlying of type {type(self.underlying)}"
             ) from err

@@ -2,13 +2,13 @@
 
 from datetime import date
 
-from attr import attrs
+from attrs import define
 
 from quantfinpy.data.curve.curve import Curve, CurveId
 from quantfinpy.data.data import map_data_class
 
 
-@attrs(slots=True, auto_attribs=True, frozen=True)
+@define(frozen=True)
 class DiscountCurve(Curve):
     """Curve from which discount factors can be derived from."""
 
@@ -24,6 +24,6 @@ class DiscountCurve(Curve):
 
 
 @map_data_class(DiscountCurve)
-@attrs(slots=True, auto_attribs=True, frozen=True)
+@define(frozen=True)
 class DiscountCurveId(CurveId):
     """Identify the different discount curve ids."""

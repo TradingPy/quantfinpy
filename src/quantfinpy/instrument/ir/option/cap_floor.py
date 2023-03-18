@@ -1,22 +1,23 @@
 """Interface for IR Cap/Floors."""
 
-from attr import attrs
+from attrs import define
 
 from quantfinpy.instrument.ir.swap.floating_leg import IRFloatingLeg
 from quantfinpy.instrument.option import Option, OptionExerciseType, OptionSide
 
 
-@attrs(frozen=True, slots=True, auto_attribs=True, init=False)
+@define(frozen=True)
 class CapFloor(Option[IRFloatingLeg]):
     """Interface for IR Cap/Floor, i.e. option on floating rate note."""
 
-    def __init__(
-        self,
+    @classmethod
+    def create(
+        cls,
         capfloor_side: OptionSide,
         capfloor_rate: float,
         floating_rate_note: IRFloatingLeg,
-    ):
-        super().__init__(
+    ) -> "CapFloor":
+        return cls(
             floating_rate_note,
             capfloor_side,
             OptionExerciseType.EUROPEAN,

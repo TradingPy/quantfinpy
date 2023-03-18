@@ -1,12 +1,12 @@
 """Interface for bond option."""
 
-from attr import attrs
+from attrs import define
 
 from quantfinpy.instrument.credit.bond import Bond
 from quantfinpy.instrument.option import Option
 
 
-@attrs(slots=True, frozen=True, auto_attribs=True)
+@define(frozen=True)
 class BondOption(Option[Bond]):
     """Option whose underlying is a bond."""
 

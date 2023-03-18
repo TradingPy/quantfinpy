@@ -2,31 +2,35 @@
 
 from __future__ import annotations
 
-from attr import attrs
+from attrs import define
 
+from quantfinpy.data.cashflow.cashflow import ObservedCashflow
 from quantfinpy.data.cashflow.schedule import CashflowSchedule, schedule_maturity
 from quantfinpy.enum.currency import Currency
 from quantfinpy.instrument.credit.instrument import CreditInstrument
 
 
-@attrs(slots=True, frozen=True, auto_attribs=True, init=False)
+@define(frozen=True)
 class Bond(CreditInstrument):
     """Bond, i.e. schedule of coupon cashflows and repayment of notional at maturity."""
 
     coupon_cashflows: CashflowSchedule
     """scheduled coupon cashflows up to maturity."""
 
-    def __init__(
-        self,
+    @classmethod
+    def create(
+        cls,
         reference_entity: str,
         notional: float,
         currency: Currency,
         coupon_cashflows: CashflowSchedule,
-    ) -> None:
-        super().__init__(
-            reference_entity, schedule_maturity(coupon_cashflows), notional, currency
+    ) -> "Bond":
+        return cls(
+            reference_entity,
+            schedule_maturity(coupon_cashflows),
+            ObservedCashflow(notional, currency),
+            coupon_cashflows,
         )
-        object.__setattr__(self, "coupon_cashflows", coupon_cashflows)
 
     @classmethod
     def validate_value(cls, instrument_value: float) -> None:

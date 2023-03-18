@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from attr import attrs
+from attrs import define
 
 from quantfinpy.order.market import MarketOrder
 from quantfinpy.order.order import Order
 
 
-@attrs(slots=True, frozen=True, auto_attribs=True)
+@define(frozen=True)
 class StopOrder(Order):
     """Interface for stop orders and board orders, by symmetry of the order's quantity."""
 

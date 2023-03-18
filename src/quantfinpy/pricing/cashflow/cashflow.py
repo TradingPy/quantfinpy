@@ -44,7 +44,7 @@ def __observed_forward_value(
 def __forward_cashflow_forward_value(
     cashflow: ForwardCashflow, forward_rate: float, cashflow_date: date
 ) -> Tuple[date, ObservedCashflow]:
-    projected_cashflow_date = cashflow_date + cashflow.tenor  # type: ignore
+    projected_cashflow_date = cashflow_date + cashflow.tenor
     return projected_cashflow_date, ObservedCashflow(
         cashflow.notional * exp(forward_rate), cashflow.currency
     )
@@ -68,6 +68,6 @@ def __floating_rate_forward_value(
     cashflow: FloatingRateCashflow, data: DataSet, cashflow_date: date
 ) -> Tuple[date, ObservedCashflow]:
     rate = data[cashflow.forward_curve_id].forward_rate(  # type: ignore
-        cashflow_date, cashflow_date + cashflow.tenor  # type: ignore
+        cashflow_date, cashflow_date + cashflow.tenor
     )
     return __forward_cashflow_forward_value(cashflow, rate, cashflow_date)

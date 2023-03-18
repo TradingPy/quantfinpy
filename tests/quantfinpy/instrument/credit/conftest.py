@@ -54,7 +54,7 @@ def default_bond(
     default_repayment_cashflow: Cashflow,
     default_fixed_coupon_schedule: CashflowSchedule,
 ) -> Bond:
-    return Bond(
+    return Bond.create(
         default_reference_entity,
         default_repayment_cashflow.notional,
         default_repayment_cashflow.currency,

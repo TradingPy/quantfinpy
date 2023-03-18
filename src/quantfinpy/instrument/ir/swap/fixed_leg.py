@@ -1,12 +1,12 @@
 """Fixed IR leg, i.e. schedule of cashflows associated to a fixed rate or multiple fixed rates."""
 
-from attr import attrs
+from attrs import define
 
 from quantfinpy.data.cashflow.cashflow import FixedRateCashflow
 from quantfinpy.instrument.cashflow.schedule import CashflowScheduleInstrument
 
 
-@attrs(slots=True, frozen=True, auto_attribs=True)
+@define(frozen=True)
 class IRFixedLeg(CashflowScheduleInstrument):
     """IR Fixed leg, i.e. schedule of fixed rate cashflows."""
 

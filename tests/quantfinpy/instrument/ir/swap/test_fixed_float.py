@@ -9,7 +9,9 @@ def test_ir_fixed_float_swap_ctor(
     default_fixed_leg: IRFixedLeg, default_floating_leg: IRFloatingLeg
 ):
     # Creating an ir fixed float swap around a fixed swap leg and a floating swap leg.
-    ir_fixed_float_swap = IRFixedFloatSwap(default_fixed_leg, default_floating_leg)
+    ir_fixed_float_swap = IRFixedFloatSwap.create(
+        default_fixed_leg, default_floating_leg
+    )
 
     # Checking built swap.
     assert isinstance(ir_fixed_float_swap, IRFixedFloatSwap)
