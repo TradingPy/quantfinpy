@@ -22,4 +22,4 @@ jobs:
         pip install tox
     - name: Running tox commands
       run: |
-        tox -e ${{ matrix.python-env }}
+        tox
