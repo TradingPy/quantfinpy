@@ -1,5 +1,7 @@
 """Test cases for base order's interface."""
 
+from datetime import datetime
+
 import pytest
 
 from quantfinpy.instrument.instrument import Instrument
@@ -17,8 +19,9 @@ def test_stop_limit_order_ctor(
     # Creating a stop limit order.
     stop_price: float = 1.0
     limit_price: float = stop_price + 1
+    stop_order_timestamp: datetime = datetime.utcnow()
     stop_limit_order = StopLimitOrder(
-        default_instrument, quantity, stop_price, limit_price
+        default_instrument, quantity, stop_order_timestamp, stop_price, limit_price
     )
 
     # Checking built stop limit order.
@@ -29,8 +32,11 @@ def test_stop_limit_order_ctor(
     assert stop_limit_order.side == expected_order_side
     assert stop_limit_order.stop_price == stop_price
     assert stop_limit_order.limit == limit_price
-    assert stop_limit_order.limit_order == LimitOrder(
-        default_instrument, quantity, limit_price
+    assert stop_limit_order.timestamp == stop_order_timestamp
+
+    stop_price_timestamp: datetime = datetime.utcnow()
+    assert stop_limit_order.limit_order(stop_price_timestamp) == LimitOrder(
+        default_instrument, quantity, stop_price_timestamp, limit_price
     )
 
 
@@ -46,8 +52,9 @@ def test_stop_order_stop_reached(
 ):
     # Creating the stop limit order whose limit_reached function is to be checked.
     limit_price: float = stop_price + 1
+    stop_order_timestamp: datetime = datetime.utcnow()
     stop_limit_order = StopLimitOrder(
-        default_instrument, quantity, stop_price, limit_price
+        default_instrument, quantity, stop_order_timestamp, stop_price, limit_price
     )
     # Check that StopLimitOrder.limit_reached works in the same way as OrderSide.limit_reached (already tested)
     assert stop_limit_order.stop_price_reached(

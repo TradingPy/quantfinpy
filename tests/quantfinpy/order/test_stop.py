@@ -1,5 +1,7 @@
 """Test cases for stop orders."""
 
+from datetime import datetime
+
 import pytest
 
 from quantfinpy.instrument.instrument import Instrument
@@ -16,7 +18,10 @@ def test_stop_order_ctor(
 ):
     # Creating a stop order.
     stop_price: float = 1.0
-    stop_order = StopOrder(default_instrument, quantity, stop_price)
+    stop_order_timestamp: datetime = datetime.utcnow()
+    stop_order = StopOrder(
+        default_instrument, quantity, stop_order_timestamp, stop_price
+    )
 
     # Checking built stop order.
     assert isinstance(stop_order, Order)
@@ -25,7 +30,12 @@ def test_stop_order_ctor(
     assert stop_order.quantity == quantity
     assert stop_order.side == expected_order_side
     assert stop_order.stop_price == stop_price
-    assert stop_order.market_order == MarketOrder(default_instrument, quantity)
+    assert stop_order.timestamp == stop_order_timestamp
+
+    stop_price_timestamp: datetime = datetime.utcnow()
+    assert stop_order.market_order(stop_price_timestamp) == MarketOrder(
+        default_instrument, quantity, stop_price_timestamp
+    )
 
 
 @pytest.mark.parametrize(
@@ -38,8 +48,11 @@ def test_stop_order_stop_reached(
     stop_price: float,
     quantity: float,
 ):
+    stop_order_timestamp: datetime = datetime.utcnow()
     # Creating the stop order whose limit_reached function is to be checked.
-    stop_order = StopOrder(default_instrument, quantity, stop_price)
+    stop_order = StopOrder(
+        default_instrument, quantity, stop_order_timestamp, stop_price
+    )
     # Check that StopOrder.limit_reached works in the same way as OrderSide.limit_reached (already tested)
     assert stop_order.stop_price_reached(market_price) == stop_order.side.limit_reached(
         market_price, stop_price

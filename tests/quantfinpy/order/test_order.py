@@ -1,5 +1,7 @@
 """Test cases for base order's interface."""
 
+from datetime import datetime
+
 import pytest
 
 from quantfinpy.instrument.instrument import Instrument
@@ -8,7 +10,7 @@ from quantfinpy.order.order import Order, OrderSide
 
 def test_order_null_quantity(default_instrument: Instrument):
     with pytest.raises(ValueError) as exc_info:
-        Order(default_instrument, 0.0)
+        Order(default_instrument, 0.0, datetime.utcnow())
     assert "An order shouldn't have null quantity." in str(exc_info.value)
 
 
@@ -18,14 +20,16 @@ def test_order_null_quantity(default_instrument: Instrument):
 def test_order_ctor(
     default_instrument: Instrument, quantity: float, expected_order_side: OrderSide
 ):
+    limit_timestamp: datetime = datetime.utcnow()
     # Creating an order (basic one equivalent to a market order).
-    order = Order(default_instrument, quantity)
+    order = Order(default_instrument, quantity, limit_timestamp)
 
     # Checking built order.
     assert isinstance(order, Order)
     assert order.instrument == default_instrument
     assert order.quantity == quantity
     assert order.side == expected_order_side
+    assert order.timestamp == limit_timestamp
 
 
 @pytest.mark.parametrize(

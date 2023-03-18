@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from datetime import datetime
 from enum import Enum, auto
 
 from attrs import define
@@ -38,6 +39,8 @@ class Order:
     """instrument to be bought or sold. Could be replaced with instrument id in the future."""
     quantity: float
     """quantity of the instrument to be bought or sold. Positive for long position and negative for short."""
+    timestamp: datetime
+    """timestamp for creation's time."""
 
     def __attrs_post_init__(self) -> None:
         if self.quantity == 0.0:

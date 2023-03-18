@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from datetime import datetime
+
 from attrs import define
 
 from quantfinpy.order.market import MarketOrder
@@ -15,10 +17,14 @@ class StopOrder(Order):
     stop_price: float
     """stop price at which the order should be converted into a market order."""
 
-    @property
-    def market_order(self) -> MarketOrder:
-        """Get the market order the current instance transforms into once the stop price has been reached."""
-        return MarketOrder(self.instrument, self.quantity)
+    def market_order(self, stop_timestamp: datetime) -> MarketOrder:
+        """
+        Get the market order the current instance transforms into once the stop price has been reached.
+
+        :param stop_timestamp: timestamp for when the stop price is reached.
+        :return: converted mkt order.
+        """
+        return MarketOrder(self.instrument, self.quantity, stop_timestamp)
 
     def stop_price_reached(self, market_price: float) -> bool:
         """

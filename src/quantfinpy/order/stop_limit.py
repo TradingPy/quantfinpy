@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from datetime import datetime
+
 from attrs import define
 
 from quantfinpy.order.limit import LimitOrder
@@ -17,12 +19,14 @@ class StopLimitOrder(Order):
     limit: float
     """limit price for the limit order the stop-limit order transforms into."""
 
-    @property
-    def limit_order(self) -> LimitOrder:
+    def limit_order(self, stop_timestamp: datetime) -> LimitOrder:
         """
         Get the limit order the current instance transforms into once the stop price has been reached.
+
+        :param stop_timestamp: time when the stop price is reached.
+        :return: converted limit order.
         """
-        return LimitOrder(self.instrument, self.quantity, self.limit)
+        return LimitOrder(self.instrument, self.quantity, stop_timestamp, self.limit)
 
     def stop_price_reached(self, market_price: float) -> bool:
         """
