@@ -5,9 +5,8 @@ from datetime import datetime
 import pytest
 
 from quantfinpy.instrument.instrument import Instrument
-from quantfinpy.order.limit import LimitOrder
-from quantfinpy.order.order import Order, OrderSide
-from quantfinpy.order.stop_limit import StopLimitOrder
+from quantfinpy.order import LimitOrder, OrderSide, StopLimitOrder
+from quantfinpy.order.order import Order
 
 
 @pytest.mark.parametrize(
