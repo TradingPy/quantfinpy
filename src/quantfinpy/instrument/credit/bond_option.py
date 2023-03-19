@@ -23,7 +23,8 @@ class BondOption(Option[Bond]):
         >>> coupon_dates = (date(2023, 1, 1), date(2023, 4, 1), date(2023, 7, 1))
         >>> coupon_tenor = pd.DateOffset(months=3)
         >>> coupon_cashflow = FixedRateCashflow(1.0, Currency.USD, coupon_tenor, 0.01)
-        >>> coupon_cashflows = CashflowSchedule.build_from_single_value_definition(coupon_dates, coupon_cashflow)
+        >>> coupon_cashflows = CashflowSchedule.build_from_single_value_definition(coupon_dates,
+        ...     coupon_cashflow)
         >>> bond = Bond.create(
         ...     "Company",
         ...     1000000,

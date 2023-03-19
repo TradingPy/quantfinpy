@@ -26,19 +26,20 @@ class CDS(Swap):
         >>> coupon_dates = (date(2023, 1, 1), date(2023, 4, 1), date(2023, 7, 1))
         >>> coupon_tenor = pd.DateOffset(months=3)
         >>> coupon_cashflow = FixedRateCashflow(1.0, Currency.USD, coupon_tenor, 0.01)
-        >>> coupon_cashflows = CashflowSchedule.build_from_single_value_definition(coupon_dates, coupon_cashflow)
+        >>> coupon_cashflows = CashflowSchedule.build_from_single_value_definition(coupon_dates,
+        ...     coupon_cashflow)
         >>> bond = Bond.create(
         ...     "Company",
         ...     1000000,
         ...     Currency.USD,
         ...     coupon_cashflows,
         ... )
-        >>> # Building CDS as composition of a swapped credit instrument (here a bond) and the premium payment schedule.
+        >>> # Building CDS as composition of a swapped credit instrument (here a bond) and the
+        >>> # premium payment schedule.
         >>> payment_dates = coupon_dates
         >>> payment_tenor = coupon_tenor
         >>> cds_spread = 0.012
         >>> cds = CDS.create(cds_spread, bond, payment_dates, payment_tenor)
-        >>>
         >>> all(map(lambda pair: pair[0] == pair[1], zip(cds.payment_dates, payment_dates)))
         True
         >>> cds.cds_spread

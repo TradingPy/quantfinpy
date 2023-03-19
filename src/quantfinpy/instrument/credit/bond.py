@@ -21,12 +21,14 @@ class Bond(CreditInstrument):
         >>> from quantfinpy.data.cashflow.cashflow import FixedRateCashflow, ObservedCashflow
         >>> from quantfinpy.data.cashflow.schedule import CashflowSchedule
         >>>
-        >>> # Building Bond as sequence of coupon cashflows + a cashflow for the repayment at maturity.
+        >>> # Building Bond as sequence of coupon cashflows + a cashflow for the repayment
+        >>> # at maturity.
         >>> reference_entity: str = "Company"
         >>> coupon_dates = pd.date_range(start=date(2023, 1, 1), periods=2, freq="3M")
         >>> coupon_tenor = pd.DateOffset(months=3)
         >>> coupon_cashflow = FixedRateCashflow(1.0, Currency.USD, coupon_tenor, 0.01)
-        >>> coupon_cashflows = CashflowSchedule.build_from_single_value_definition(coupon_dates, coupon_cashflow)
+        >>> coupon_cashflows = CashflowSchedule.build_from_single_value_definition(coupon_dates,
+        ...     coupon_cashflow)
         >>> maturity = coupon_dates[-1] + coupon_tenor
         >>> repayment_coupon = ObservedCashflow(1.0, Currency.USD)
         >>> bond = Bond.create(
