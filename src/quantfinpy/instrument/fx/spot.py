@@ -8,7 +8,16 @@ from quantfinpy.instrument.spot import SpotInstrument
 
 @define(frozen=True)
 class FXSpot(SpotInstrument):
-    """Interface for fx spot instruments."""
+    """
+    Interface for fx spot instruments.
+
+    Example:
+        >>> fx_spot = FXSpot(Currency.USD, Currency.EUR)
+        >>> fx_spot.domestic_currency.name
+        'USD'
+        >>> fx_spot.foreign_currency.name
+        'EUR'
+    """
 
     domestic_currency: Currency
     """Domestic currency."""

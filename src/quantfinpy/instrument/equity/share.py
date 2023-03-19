@@ -7,7 +7,16 @@ from quantfinpy.instrument.instrument import Instrument
 
 @define(frozen=True)
 class EquityShare(Instrument):
-    """Equity share."""
+    """
+    Equity share.
+
+    Example:
+        >>> # Building equity share for Google.
+        >>> company: str = "Google"
+        >>> share = EquityShare(company)
+        >>> share.company
+        'Google'
+    """
 
     company: str
     """company name."""
