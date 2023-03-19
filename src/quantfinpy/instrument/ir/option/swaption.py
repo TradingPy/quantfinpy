@@ -18,6 +18,15 @@ class IRSwaption(Option[IRFixedFloatSwap]):
         swap: IRFixedFloatSwap,
         strike_rate: float,
     ) -> "IRSwaption":
+        """
+        Create ir swaption.
+
+        :param option_side:
+        :param option_exercise:
+        :param swap:
+        :param strike_rate:
+        :return: created ir swaption.
+        """
         return cls(
             swap,
             option_side,

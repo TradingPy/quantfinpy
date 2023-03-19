@@ -3,6 +3,8 @@
 import sys
 from datetime import date
 
+import pandas as pd
+
 from quantfinpy.data.cashflow.cashflow import Cashflow, ForwardCashflow
 from quantfinpy.utils.schedule import ScheduledValues
 
@@ -25,5 +27,6 @@ def schedule_maturity(cashflow_schedule: CashflowSchedule) -> date:
     last_cashflow_date, last_cashflow = cashflow_schedule.schedule[-1]
     assert isinstance(last_cashflow_date, date)
     if isinstance(last_cashflow, ForwardCashflow):
-        return last_cashflow_date + last_cashflow.tenor
+        last_cashflow_date_ts: pd.Timestamp = last_cashflow.tenor + last_cashflow_date  # type: ignore
+        return last_cashflow_date_ts.date()
     return last_cashflow_date

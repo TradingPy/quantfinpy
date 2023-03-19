@@ -16,6 +16,13 @@ class IRFixedFixedSwap(ReceiverIRFixedLegMixin, Swap):
     def create(
         cls, receiver_fixed_leg: IRFixedLeg, payer_fixed_leg: IRFixedLeg
     ) -> "IRFixedFixedSwap":
+        """
+        Create ir fixed-fixed swap.
+
+        :param receiver_fixed_leg:
+        :param payer_fixed_leg:
+        :return: created swap.
+        """
         return cls(
             (Position(receiver_fixed_leg, 1.0), Position(payer_fixed_leg, -1.0)),
         )

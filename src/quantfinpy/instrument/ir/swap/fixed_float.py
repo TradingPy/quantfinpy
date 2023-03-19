@@ -17,6 +17,13 @@ class IRFixedFloatSwap(ReceiverIRFixedLegMixin, Swap):
     def create(
         cls, receiver_fixed_leg: IRFixedLeg, payer_floating_leg: IRFloatingLeg
     ) -> "IRFixedFloatSwap":
+        """
+        Create ir fixed-float swap.
+
+        :param receiver_fixed_leg:
+        :param payer_floating_leg:
+        :return: created swap.
+        """
         return cls(
             (Position(receiver_fixed_leg, 1.0), Position(payer_floating_leg, -1.0)),
         )

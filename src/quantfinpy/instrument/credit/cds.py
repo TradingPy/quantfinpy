@@ -16,7 +16,38 @@ from quantfinpy.instrument.swap import Swap
 
 @define(frozen=True)
 class CDS(Swap):
-    """Interface for credit default swaps, i.e. swap an instrument whose value might be affected by a credit event."""
+    """
+    Interface for credit default swaps, i.e. swap an instrument whose value might be affected by a credit event.
+
+    Example:
+        >>> import pandas as pd
+        >>> from quantfinpy.enum.currency import Currency
+        >>> from quantfinpy.instrument.credit.bond import Bond
+        >>> coupon_dates = (date(2023, 1, 1), date(2023, 4, 1), date(2023, 7, 1))
+        >>> coupon_tenor = pd.DateOffset(months=3)
+        >>> coupon_cashflow = FixedRateCashflow(1.0, Currency.USD, coupon_tenor, 0.01)
+        >>> coupon_cashflows = CashflowSchedule.build_from_single_value_definition(coupon_dates, coupon_cashflow)
+        >>> bond = Bond.create(
+        ...     "Company",
+        ...     1000000,
+        ...     Currency.USD,
+        ...     coupon_cashflows,
+        ... )
+        >>> # Building CDS as composition of a swapped credit instrument (here a bond) and the premium payment schedule.
+        >>> payment_dates = coupon_dates
+        >>> payment_tenor = coupon_tenor
+        >>> cds_spread = 0.012
+        >>> cds = CDS.create(cds_spread, bond, payment_dates, payment_tenor)
+        >>>
+        >>> all(map(lambda pair: pair[0] == pair[1], zip(cds.payment_dates, payment_dates)))
+        True
+        >>> cds.cds_spread
+        0.012
+        >>> cds.credit_instrument == bond
+        True
+        >>> cds.payment_tenor
+        <DateOffset: months=3>
+    """
 
     cds_spread: float
     """CDS spread, i.e. the insurance premium."""
@@ -30,6 +61,15 @@ class CDS(Swap):
         payment_dates: Sequence[date],
         payment_tenor: DateOffset,
     ) -> "CDS":
+        """
+        Create CDS.
+
+        :param cds_spread:
+        :param credit_instrument:
+        :param payment_dates:
+        :param payment_tenor:
+        :return: created CDS
+        """
         assert payment_dates[-1] <= credit_instrument.maturity, (
             f"Last payment date {payment_dates[-1]} is past the maturity of the underlying credit instrument "
             f"{credit_instrument.maturity}."
